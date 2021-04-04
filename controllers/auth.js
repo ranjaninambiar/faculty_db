@@ -57,6 +57,14 @@ exports.getUserLoginPage = (req, res, next) => {
   res.render("user/userLogin");
 };
 
+
+exports.getUserforgotpass = async(req, res, next) => {
+res.render("user/forgotpass");
+};
+
+exports.getUserresetlink = (req, res, next) => {
+  res.render("user/resetpass");
+};
 exports.getUserLogout = async (req, res, next) => {
   await req.session.destroy();
   req.logout();
@@ -71,6 +79,40 @@ exports.getgUserSignUp = (req, res, next) => {
   res.render("user/guserSignup");
 };
 
+
+exports.postUserforgotpass = async (req, res, next) => {
+
+  let nodemailer = require('nodemailer');
+    const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    ignoreTLS: false,
+    secure: false,
+    auth: {
+      user: 'ranjuparker@gmail.com',
+      pass: 'gnqtqfejgzsguwdr'
+    }
+    });
+    module.exports = transporter;
+  
+
+var mailOptions = {
+  from: 'ranjuparker@gmail.com',
+  to: req.body.email,
+  subject: 'Forgot password in Admindek',
+  text: 'Your password reset request from Admindek!'
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  
+  }
+});
+return res.render("user/resetpass");
+};
 exports.postUserSignUp = async (req, res, next) => {
   try {
     const newUser = new User({
@@ -86,6 +128,42 @@ exports.postUserSignUp = async (req, res, next) => {
     await passport.authenticate("local")(req, res, () => {
       res.redirect("/user/1");
     });
+
+
+    let nodemailer = require('nodemailer');
+    const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    ignoreTLS: false,
+    secure: false,
+    auth: {
+      user: 'ranjuparker@gmail.com',
+      pass: 'gnqtqfejgzsguwdr'
+    }
+    });
+    module.exports = transporter;
+
+
+
+
+    
+
+var mailOptions = {
+  from: 'ranjuparker@gmail.com',
+  to: req.body.email,
+  subject: 'Sending Email using Node.js',
+  text: 'Welcome to Admindek!'
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
+
+    
   } catch (err) {
     console.log(err);
     return res.render("user/userSignup");

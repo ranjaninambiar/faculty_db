@@ -1,6 +1,9 @@
 const mongoose = require("mongoose"),
   passportLocalMongoose = require("passport-local-mongoose");
 
+MAX_LOGIN_ATTEMPTS = 2,
+LOCK_TIME = 2 * 60 * 60 * 1000;
+
 const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
@@ -20,6 +23,9 @@ const userSchema = new mongoose.Schema({
   },
   password: String,
   joined: { type: Date, default: Date.now() },
+
+  loginAttempts: { type: Number, required: true, default: 3 },
+    lockUntil: { type: Number },
   /*
   bookIssueInfo: [
     {

@@ -38,12 +38,18 @@ router.get("/auth/user-login", authController.getUserLoginPage);
 
 router.post("/auth/user-login", passport.authenticate("local", {
         successRedirect : "/user/1",
-        failureRedirect : "/auth/user-login",
+        failureRedirect : "/auth/user-login"
     }), (req, res)=> {
+        MAX_LOGIN_ATTEMPTS -=1
 });
+router.get("/auth/user-fpass", authController.getUserforgotpass);
+router.get("/auth/user-resetlink", authController.getUserresetlink);
 
+router.post("/auth/user-fpass",authController.postUserforgotpass);
 //user -> user logout handler
 router.get("/auth/user-logout", authController.getUserLogout);
+
+
 
 //user sign up handler
 router.get("/auth/user-signUp", authController.getUserSignUp);
