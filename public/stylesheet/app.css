@@ -5,7 +5,24 @@
   border-radius: .2rem;
 }
 
-
+.navitems{
+    grid-area: navbar;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 16rem;
+    text-decoration: none;
+}
+.navbar-dark{
+  color: 	#D3D3D3;
+  text-decoration: none;
+  }
+  .navbar-dark:hover{
+    color: whitesmoke;
+    text-decoration: none;
+    
+    }
 /* The sidebar menu */
 .sidenav {
   height: 100%; /* Full-height: remove this if you want "auto" height */

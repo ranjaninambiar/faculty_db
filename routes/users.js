@@ -27,6 +27,8 @@ router.put("/user/1/update-profile", middleware.isLoggedIn, userController.putUp
 //user -> notification
 router.get("/user/1/notification", middleware.isLoggedIn, userController.getNotification);
 
+router.get("/user/1/courses",middleware.isLoggedIn,userController.coursespage );
+
 
 /*
 

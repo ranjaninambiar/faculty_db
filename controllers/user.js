@@ -29,6 +29,7 @@ exports.getUserProfile = (req, res, next) => {
 exports.gettodo = (req, res, next) => {
     res.render("user/todo");
 }
+
 // user -> update/change password
 exports.putUpdatePassword = async(req, res, next) => {
     const username = req.user.username;
@@ -140,7 +141,9 @@ exports.postUploadUserImage = async (req, res, next) => {
 exports.getNotification = async(req, res, next) => {
     res.render("user/notification");
 }
-
+exports.coursespage = async(req, res, next) => {
+    res.render("user/course");
+}
 //user -> issue a book
 /*
 exports.postIssueBook = async(req, res, next) => {
