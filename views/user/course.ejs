@@ -1,0 +1,50 @@
+<% include ../partials/header %>
+
+<!--NAVIGATION BAR FOR USER-->
+<% include ../partials/userNav %>
+<% include ../partials/alerts %>
+<!--COURSES SECTION-->
+<header id="main-header" class="py-2 bg-warning text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1><i class="fa fa-book"></i> Courses</h1>
+        </div>
+      </div>
+    </div>
+  </header>
+<!--ACTIONS-->
+<section id="actions" class="py-4 mb-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 mr-auto">
+            <a href="/user/1/courses" class="btn btn-light btn-block">
+            <i class="fa fa-arrow-left"></i> Back to Dashboard
+          </a>
+        </div>
+        
+        <div class="col-md-3">
+          <a href="" class="btn btn-primary btn-block" data-toggle="modal" data-target="#changePasswordModal">
+            <i class="fa fa-key"></i> Create a course
+          </a>
+        </div>
+        
+        <div class="col-md-3">
+          <a href="" class="btn btn-success btn-block" data-toggle="modal" data-target="#updateProfileModal">
+            <i class="fa fa-refresh"></i> update course
+          </a>
+        </div>
+        
+        
+        
+        <div class="col-md-3">
+          <a href="" class="btn btn-danger btn-block" data-toggle="modal" data-target="#deleteProfileModal">
+            <i class="fa fa-remove"></i> Delete Course
+          </a>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  
+  <% include ../partials/alerts %>
