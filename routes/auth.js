@@ -47,6 +47,7 @@ router.get("/auth/user-logout", authController.getUserLogout);
 
 //user sign up handler
 router.get("/auth/user-signUp", authController.getUserSignUp);
+router.get("/auth/user-gsignUp", authController.getgUserSignUp);
 
 router.post("/auth/user-signup", authController.postUserSignUp);
 

@@ -67,6 +67,10 @@ exports.getUserSignUp = (req, res, next) => {
   res.render("user/userSignup");
 };
 
+exports.getgUserSignUp = (req, res, next) => {
+  res.render("user/guserSignup");
+};
+
 exports.postUserSignUp = async (req, res, next) => {
   try {
     const newUser = new User({
