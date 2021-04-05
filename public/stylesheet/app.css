@@ -11,7 +11,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-right: 16rem;
+    padding-right: 13.5rem;
     text-decoration: none;
 }
 .navbar-dark{
@@ -136,4 +136,120 @@ body {
 }
 .fa-user-circle,.fa-bookmark,.fa-calendar,.fa-bullhorn,.fa-check-circle,.fa-paper-plane-o,.fa-folder {
   font-size: 2rem;
+}
+.fa-google{
+  color:white;
+  background-color: black;
+  border-radius: 50%; 
+}
+.mt-3 .fa-user-circle,.fa-user-plus{
+  text-decoration: none;
+  font-size: inherit;
+} 
+.underlineHover:after {
+  display: block;
+  left: 0;
+  bottom: -10px;
+  width: 0;
+  height: 2px;
+  background-color: #56baed;
+  content: "";
+  transition: width 0.2s;
+}
+
+.underlineHover:hover {
+  color: #0d0d0d;
+}
+
+.underlineHover:hover:after{
+  width: 100%;
+}
+.login-button{
+border:0;
+background: black;
+display:block;
+margin: 20px auto;
+text-align: center;
+border:2px solid green;
+padding:14px 20px;
+width:100px;
+outline:none;
+color:white;
+border-radius: 24px;
+transition:0.25s;
+cursor : pointer;
+}
+.login-button:hover{
+  background: green;
+}
+.form-control{
+  border:0;
+  background: whitesmoke;
+  display:block;
+  margin: 10px auto;
+  text-align: center;
+  border:2px solid skyblue;
+  padding:14px 10px;
+  width:300px;
+  outline:none;
+  color:rgb(39, 39, 39);
+  border-radius: 24px;
+  transition:0.25s;
+  cursor: pointer;
+}
+.form-control:focus{
+  width:400px;
+  border-color:green;
+}
+.submit-button{
+  border:0;
+background: black;
+display:block;
+margin: 20px auto;
+text-align: center;
+border:2px solid green;
+padding:14px 20px;
+width:100px;
+outline:none;
+color:white;
+border-radius: 24px;
+transition:0.25s;
+cursor : pointer;
+}
+.submit-button:hover{
+  background: green;
+}
+.reset-button{
+  border:0;
+background: black;
+display:block;
+margin: 20px auto;
+text-align: center;
+border:2px solid green;
+padding:14px 20px;
+width: 150px;
+outline:none;
+color:white;
+border-radius: 24px;
+transition:0.25s;
+cursor : pointer;
+}
+.reset-button:hover{
+  background: green;
+}
+.reset-user{
+  margin-left: 650px;
+  font-weight:bolder;
+  font-size: 3rem;
+  color: #fff;
+  text-align: center;
+  font-family: Averia Serif Libre, serif;
+  
+}
+.reset-block{
+  padding-top: 250px;
+}
+.navitems img{
+  border-radius: 50%;
+  margin-right: 10px;
 }
