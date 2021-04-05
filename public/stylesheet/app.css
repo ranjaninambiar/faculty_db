@@ -142,6 +142,30 @@ body {
   background-color: black;
   border-radius: 50%; 
 }
+.google-bag{
+  color: black;
+  height: 600px;
+  width: 400px;
+  border-radius: 20px;
+  background-color: whitesmoke;
+  background-blend-mode:exclusion;
+  opacity: 80%;
+  text-align: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 5rem;
+}
+
+.g-signin2{
+  opacity: 100%;
+  align-items: center;
+  margin-left: 8.5rem;
+  height: 15rem;
+  align-content: center;
+  text-align: center;
+  padding-top: 10rem;
+
+}
 .mt-3 .fa-user-circle,.fa-user-plus{
   text-decoration: none;
   font-size: inherit;
@@ -238,7 +262,7 @@ cursor : pointer;
   background: green;
 }
 .reset-user{
-  margin-left: 650px;
+  margin-left: 850px;
   font-weight:bolder;
   font-size: 3rem;
   color: #fff;

@@ -8,8 +8,15 @@
 
     </head>
     <body>
-        <div id="profileinfo"></div>
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        
+        <br>
+        <div class = "google-bag">
+            <h2 class = "card" style=" border-radius: 20px;">Google sign-in</h2>
+            <div id="profileinfo"></div> 
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <a href="#" onclick="signOut();">Signout</a>
+        </div>
+        
         <script>
             function onSignIn(googleUser) {
             var profile = googleUser.getBasicProfile();
@@ -19,8 +26,7 @@
             console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
   }
         </script>
-
-        <a href="#" onclick="signOut();">Signout</a>
+        
         <script>
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
