@@ -14,6 +14,7 @@ const express = require("express"),
   MongoStore = require("connect-mongodb-session")(session),
   flash = require("connect-flash"),
   User = require("./models/user"),
+  Note = require('./models/notes'),
   userRoutes = require("./routes/users"),
   //adminRoutes = require("./routes/admin"),
   //bookRoutes = require("./routes/books"),
@@ -33,6 +34,13 @@ app.use(methodOverride("_method"));
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 dotenv.config();
+
+
+
+app.get('/user/1/notes-new', async (req, res) => {
+  const notes = await Note.find().sort('-createdAt');
+  res.render('user/noteslanding', { notes: notes });
+});
 // db config
 mongoose
   .connect(process.env.MONGODB_URI, {

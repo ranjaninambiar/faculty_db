@@ -4,7 +4,8 @@ const fs = require('fs');
 
 // importing models
 const User = require("../models/user"),
-      Activity = require("../models/activity");
+      Activity = require("../models/activity"),
+      Note = require("../models/notes");
       //Book = require("../models/book"),
       //Issue = require("../models/issue"),
       //Comment = require("../models/comment");
@@ -29,6 +30,36 @@ exports.getUserProfile = (req, res, next) => {
 exports.gettodo = (req, res, next) => {
     res.render("user/todo");
 }
+exports.notespage = (req, res, next) => {
+    res.render("user/noteslanding");
+}
+exports.newnotepage =(req, res, next) => {
+    res.render("user/notes");
+}
+exports.postnotes = async(req, res, next) => {
+    let note = await new Note({
+        title: req.body.title,
+        description: req.body.description,
+      });
+      try {
+        note = await note.save();
+        res.redirect('/user/1/notes-new');
+      } catch (e) {
+        console.log(e);
+        res.render('user/noteslanding');
+      }
+    };
+
+
+exports.deletenote = async(req, res, next) => {
+    try {
+        await Note.findByIdAndRemove(req.params.id);
+        res.redirect('/user/1/notes-new');
+      } catch (e) {
+        console.log(e);
+        res.redirect('/user/1/notes-new');
+      }
+};
 
 // user -> update/change password
 exports.putUpdatePassword = async(req, res, next) => {

@@ -44,7 +44,7 @@ router.post("/auth/user-login", passport.authenticate("local", {
 });
 router.get("/auth/user-fpass", authController.getUserforgotpass);
 router.get("/auth/user-resetlink", authController.getUserresetlink);
-
+router.get("/auth/user-todo", authController.getUsertodo);
 router.post("/auth/user-fpass",authController.postUserforgotpass);
 //user -> user logout handler
 router.get("/auth/user-logout", authController.getUserLogout);
@@ -54,6 +54,9 @@ router.get("/auth/user-logout", authController.getUserLogout);
 //user sign up handler
 router.get("/auth/user-signUp", authController.getUserSignUp);
 router.get("/auth/user-gsignUp", authController.getgUserSignUp);
+
+
+
 
 router.post("/auth/user-signup", authController.postUserSignUp);
 

@@ -71,6 +71,10 @@ exports.getUserLogout = async (req, res, next) => {
   res.redirect("/");
 };
 
+exports.getUsertodo = (req, res, next) => {
+  res.render("user/todo");
+};
+
 exports.getUserSignUp = (req, res, next) => {
   res.render("user/userSignup");
 };

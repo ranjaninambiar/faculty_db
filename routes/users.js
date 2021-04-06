@@ -30,6 +30,11 @@ router.get("/user/1/notification", middleware.isLoggedIn, userController.getNoti
 router.get("/user/1/courses",middleware.isLoggedIn,userController.coursespage );
 
 
+router.get('/user/1/notes-new', middleware.isLoggedIn,userController.notespage );
+router.get('/user/1/notes-newnote', middleware.isLoggedIn,userController.newnotepage );
+router.post('/:id',middleware.isLoggedIn,userController.deletenote );
+router.post('/user/1/notes-newnote', middleware.isLoggedIn, userController.postnotes);
+
 /*
 
 //user -> issue a book
