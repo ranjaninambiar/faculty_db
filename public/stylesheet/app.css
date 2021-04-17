@@ -211,7 +211,7 @@ h3{
 }
 
 .login-container{
-  padding: 10rem 0;
+  padding: 10rem 5rem;
 }
 
 .h3-login{
@@ -234,8 +234,7 @@ h3{
 
 .login-signup{
   background-color: hsla(5, 46%, 89%, 0.774);
-  position: relative;
-  left: 55%;
+
 }
 
 .mt-3 .fa-user-circle,.fa-user-plus{
