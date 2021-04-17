@@ -1,8 +1,35 @@
+
 .btn-group-xs > .btn, .btn-xs {
   padding: .40rem .40rem;
   font-size: .8rem;
   line-height: .5;
   border-radius: .2rem;
+}
+
+.header-container{
+  text-align: right;
+  background-color:#a4123f;
+  padding: 1rem 0 2.5rem 0;
+}
+
+.header-image{
+  width: 18rem;
+  float: left;
+  padding: 0 0 2rem 1rem;
+  margin-left: 2.5rem;
+}
+
+.header-text{
+  display: inline;
+  color: #CCC;
+  position: relative;
+  top: 0.5rem;
+  padding-right: 5rem;
+  text-transform: none;
+  font-family:'Times New Roman', Times, serif;
+  font-size: 3.5rem;
+  font-weight: bold;
+  
 }
 
 .navitems{
@@ -51,27 +78,32 @@
 }
 
 .wrapper {
-  display: flex;
-  justify-content: center;
+  padding: 4rem 0 0 0;
+  margin: 0;
+}
+
+.py-3{
+  padding: 0;
+  margin: 0;
 }
 
 footer { 
+  background-color: #292929;
+  margin: 0;
   flex: 0 0 auto;
   display: flex;
   color: #ccc;
-  margin: 1em;
-  padding: 1em;
-  width: 80%;
-  border-top: 1px solid blue;
   justify-content: center;
 }
+
 
 .table-text {
   color: red;
   font-weight: bold;
 }
 body {
-  background: url('./mars.jpg') no-repeat center center fixed;
+  background: url('./coimbatore-campus.jpg') no-repeat center center fixed;
+  padding-top: 2rem;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -93,6 +125,9 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+h3{
+  font-family: Averia Serif Libre, serif;
+}
 
 .column {
   float: left;
@@ -137,11 +172,19 @@ body {
 .fa-user-circle,.fa-bookmark,.fa-calendar,.fa-bullhorn,.fa-check-circle,.fa-paper-plane-o,.fa-folder {
   font-size: 2rem;
 }
-.fa-google{
-  color:white;
-  background-color: black;
-  border-radius: 50%; 
+
+.btn-custom{
+  color: #CCC;
+  text-decoration: none;
+  background-color: #a4123f;
 }
+
+.btn:hover{
+  background-color: #830721d3;
+  color:whitesmoke;
+}
+
+
 .google-bag{
   color: black;
   height: 600px;
@@ -166,6 +209,35 @@ body {
   padding-top: 10rem;
 
 }
+
+.login-container{
+  padding: 10rem 0;
+}
+
+.h3-login{
+  padding-bottom: 0.5rem;
+  font-weight: 600;
+  color: #272727;
+
+}
+
+.hr-login{
+  border: 5px dotted;
+  border-width: 0 0 0.5rem 0;
+  width: 4rem;
+  color: #414141;
+}
+
+.signup-buttons{
+  padding: 1rem 0;
+}
+
+.login-signup{
+  background-color: hsla(5, 46%, 89%, 0.774);
+  position: relative;
+  left: 55%;
+}
+
 .mt-3 .fa-user-circle,.fa-user-plus{
   text-decoration: none;
   font-size: inherit;
