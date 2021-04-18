@@ -1,27 +1,43 @@
 <% include ../partials/header %>
 
+
+<body style="padding: 0;">  
+
+  <div class="container-fluid" style="padding: 0; margin: 0;">
+      <div class="header-container">
+          <img class="header-image" src="https://www.amrita.edu/sites/default/files/logo.png">
+          <!-- https://www.pngitem.com/pimgs/m/539-5392274_amrita-university-logo-hd-png-download.png -->
+          <h1 class="header-text">Faculty Dashboard</h1>
+      </div>
+  </div>
+
+
+
 <section id="usersignUpForm">
+
   <div class="container mt-5">
     <div class="row">
-      <div class="col-md-3">
+      <!-- <div class="col-md-3">
         <img src="https://www.pngitem.com/pimgs/m/539-5392274_amrita-university-logo-hd-png-download.png" height="250px" style="margin-top:9px; margin-left:170px;">
-    </div>
+      </div> -->
       <div class="col-md-6 offset-md-3">
-        <div class="card">
-          <div class="card-header text-center">
-            <h4>Faculty Signup</h4>
+        <div class="card transparent-container">
+          <div class="card-header text-center login-card-header">
+            <img class="login-image-logo" src="https://www.pngitem.com/pimgs/m/539-5392274_amrita-university-logo-hd-png-download.png">
+            <h4 class="h3-login login-h4">Faculty SignUp</h4>
+            <hr class="hr-login">
           </div>
             <div class="card-block">
               <form class="p-3" action="/auth/user-signUp" method="POST">
                   
                 <div class="form-group">
                   <label class="form-control-label">First Name</label>
-                  <input type="text" name="firstName" placeholder="firstName" class="form-control" required>
+                  <input type="text" name="firstName" placeholder="First Name" class="form-control" required>
                 </div>
                 
                  <div class="form-group">
                   <label class="form-control-label">Last Name</label>
-                  <input type="text" name="lastName" placeholder="lastName" class="form-control" required>
+                  <input type="text" name="lastName" placeholder="Last Name" class="form-control" required>
                 </div>
                   
                 <div class="form-group">
@@ -41,16 +57,17 @@
                 
                  <div class="form-group">
                   <label class="form-control-label">Gender</label>
-                  <select name="gender" class="form-control">
-                    <option name="male">Male</option>
-                    <option name="female">Female</option>
-                    <option name="others">Others</option>
-                  </select>
+                  <input list="Gender" class="form-control"  placeholder="Gender">
+                  <datalist id="Gender">
+                    <option value="Male">
+                    <option value="female">
+                    <option value="others">
+                  </datalist>
                 </div>
                 
                  <div class="form-group">
                   <label class="form-control-label">Address</label>
-                  <input type="text" name="address" placeholder="Address" class="form-control" required>
+                  <input type="text" name="address" placeholder="Address" class="form-control-address" required>
                 </div>
                 
                 <button class="submit-button"type="submit" class="btn btn-warning btn-block">Submit</button>
@@ -60,6 +77,7 @@
       </div>
     </div>
   </div>
+
 </section>
 
 

@@ -1,36 +1,54 @@
 <% include ../partials/header %>
 
- <% include ../partials/alerts %>
+<body style="padding: 0;">  
+
+  <div class="container-fluid" style="padding: 0; margin: 0;">
+      <div class="header-container">
+          <img class="header-image" src="https://www.amrita.edu/sites/default/files/logo.png">
+          <!-- https://www.pngitem.com/pimgs/m/539-5392274_amrita-university-logo-hd-png-download.png -->
+          <h1 class="header-text">Faculty Dashboard</h1>
+      </div>
+  </div>
+
+
+
+  <% include ../partials/alerts %>
 
 <section id="userLoginForm">
+
   <div class="container mt-5">
     <div class="row">
-      <div class="col-md-3">
+      <!-- <div class="col-md-3">
         <img src="https://www.pngitem.com/pimgs/m/539-5392274_amrita-university-logo-hd-png-download.png" height="250px" style="margin-top:9px; margin-left:170px;">
-    </div>
+      </div> -->
+
       <div class="col-md-6 offset-md-3">
-        <div class="card">
-          <div class="card-header text-center">
-            <h4>Faculty Login</h4>
+        <div class="card transparent-container">
+          <div class="card-header text-center login-card-header">
+            <img class="login-image-logo" src="https://www.pngitem.com/pimgs/m/539-5392274_amrita-university-logo-hd-png-download.png">
+            <h4 class="h3-login login-h4">Faculty Login</h4>
+            <hr class="hr-login">
           </div>
             <div class="card-block">
               <form class="p-3" action="/auth/user-login" method="POST">
                 <div class="form-group">
-                  <label class="form-control-label">Username</label>
-                  <input type="text" name="username" placeholder="Username" class="form-control">
+                  <label class="form-control-label login-form-text">Username</label>
+                  <input class="form-control" type="text" name="username" placeholder="Username">
                 </div>
                 <div class="form-group">
-                  <label class="form-control-label">Password</label>
-                  <input type="password" name="password" placeholder="Password" class="form-control">
+                  <label class="form-control-label login-form-text">Password</label>
+                  <input class="form-control" type="password" name="password" placeholder="Password">
                 </div>
-                <button class="login-button" type="submit" class="btn btn-success btn-block">Login</button>
+                <button class="login-button btn btn-block" type="submit">Login</button>
               </form>
               <a class="underlineHover" href="/auth/user-fpass">Forgot password?</a>
             </div>
         </div>
       </div>
     </div>
+
   </div>
+
 </section>
 
 

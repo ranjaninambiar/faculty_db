@@ -32,6 +32,13 @@
   
 }
 
+.homepage-login{
+  margin: 0;
+  margin-left: 3rem;
+  margin-right: 4rem;
+  padding: 3rem;
+}
+
 .navitems{
     grid-area: navbar;
     color: #ffffff;
@@ -166,20 +173,20 @@ h3{
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  color: #4d4d4d;
   display: block;
 }
 .fa-user-circle,.fa-bookmark,.fa-calendar,.fa-bullhorn,.fa-check-circle,.fa-paper-plane-o,.fa-folder {
   font-size: 2rem;
 }
 
-.btn-custom{
+.btn-custom-red{
   color: #CCC;
   text-decoration: none;
   background-color: #a4123f;
 }
 
-.btn:hover{
+.btn-custom-red:hover{
   background-color: #830721d3;
   color:whitesmoke;
 }
@@ -200,18 +207,25 @@ h3{
 }
 
 .g-signin2{
-  opacity: 100%;
-  align-items: center;
-  margin-left: 8.5rem;
-  height: 15rem;
-  align-content: center;
-  text-align: center;
-  padding-top: 10rem;
+  margin-left: 25%;
+  padding: 3rem;
 
 }
 
+
+
 .login-container{
   padding: 10rem 5rem;
+}
+
+.login-form-text{
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.login-h4{
+  font-weight: 800;
+  font-size: 2.5rem;
 }
 
 .h3-login{
@@ -232,10 +246,12 @@ h3{
   padding: 1rem 0;
 }
 
-.login-signup{
+.transparent-container{
   background-color: hsla(5, 46%, 89%, 0.774);
 
 }
+
+
 
 .mt-3 .fa-user-circle,.fa-user-plus{
   text-decoration: none;
@@ -247,7 +263,7 @@ h3{
   bottom: -10px;
   width: 0;
   height: 2px;
-  background-color: #56baed;
+  background-color:#292929;
   content: "";
   transition: width 0.2s;
 }
@@ -261,29 +277,43 @@ h3{
 }
 .login-button{
 border:0;
-background: black;
+background:#a4123f;
 display:block;
 margin: 20px auto;
 text-align: center;
-border:2px solid green;
+border:2px solid #80082c;
 padding:14px 20px;
 width:100px;
 outline:none;
-color:white;
+color:rgb(196, 196, 196);
 border-radius: 24px;
 transition:0.25s;
 cursor : pointer;
 }
-.login-button:hover{
-  background: green;
+
+.login-card-header{
+  padding: 2rem 0;
 }
+
+.login-button:hover{
+  background:#80082c;
+  color: white;
+}
+
+.login-image-logo{
+  position: relative;
+  border-radius: 0%;
+  bottom: 2rem;
+  width: 7rem;
+}
+
 .form-control{
   border:0;
   background: whitesmoke;
   display:block;
-  margin: 10px auto;
+  margin: 0.8rem auto 3rem auto;
   text-align: center;
-  border:2px solid skyblue;
+  border:2px solid #8f5063;
   padding:14px 10px;
   width:300px;
   outline:none;
@@ -292,6 +322,27 @@ cursor : pointer;
   transition:0.25s;
   cursor: pointer;
 }
+
+.form-control-address{
+  background: whitesmoke;
+  display:block;
+  align-content: none;
+  margin: 0.8rem auto 3rem auto;
+  padding:14px 10px;
+  width:350px;
+  height: 10rem;
+  outline:none;
+  border:2px solid #8f5063;
+  border-radius: 5px;
+  color:rgb(39, 39, 39);
+  transition:0.25s;
+  cursor: pointer;
+}
+
+.form-control-address::placeholder{
+  cursor: auto;
+}
+
 .form-control:focus{
   width:400px;
   border-color:green;
@@ -404,4 +455,15 @@ li{
 
 .delete {
   float:right;
+}
+
+.g-signout{
+  color: rgb(201, 198, 198);
+  font-size: 1rem;
+  font-variant: normal;
+  font-weight: 300;
+}
+
+.g-signout:hover{
+  color: white;
 }
