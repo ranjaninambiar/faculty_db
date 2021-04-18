@@ -275,7 +275,7 @@ h3{
 .underlineHover:hover:after{
   width: 100%;
 }
-.login-button{
+.login-button,.submit-button{
 border:0;
 background:#a4123f;
 display:block;
@@ -295,7 +295,7 @@ cursor : pointer;
   padding: 2rem 0;
 }
 
-.login-button:hover{
+.login-button,.submit-button:hover{
   background:#80082c;
   color: white;
 }
@@ -347,24 +347,7 @@ cursor : pointer;
   width:400px;
   border-color:green;
 }
-.submit-button{
-  border:0;
-background: black;
-display:block;
-margin: 20px auto;
-text-align: center;
-border:2px solid green;
-padding:14px 20px;
-width:100px;
-outline:none;
-color:white;
-border-radius: 24px;
-transition:0.25s;
-cursor : pointer;
-}
-.submit-button:hover{
-  background: green;
-}
+
 .reset-button{
   border:0;
 background: black;
