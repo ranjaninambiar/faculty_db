@@ -5,14 +5,8 @@
 <% include ../partials/alerts %>
 
 <!--DASHBOARD SECTION-->
-<header id="main-header" class="py-2 bg-warning text-white">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <h1><i class="fa fa-user"></i> Profile</h1>
-      </div>
-    </div>
-  </div>
+<header id="main-header" class="py-2 bg-light text-black ">
+  <h1>Profile Management</h1>
 </header>
 
 <!--ACTIONS-->
@@ -53,35 +47,35 @@
 
 <!--PROFILE-->
 <section class="mt-4">
-    <div class="container">
+    <div class="container transparent-container2">
         <div class="row">
             <div class="col-md-3">
               <img src="/images/<%=currentUser.image || "profile.png"%>" class="card-img-top rounded-circle">
               <a href="" class="text-muted ml-5" data-toggle="modal" data-target="#changePhotoModal"><i class="fa fa-camera"></i> Change Photo</a>
             </div>
-            <div class="col-md-6">
-                <h4 class="text-center pb-3" style="color:white;">Your Personal Information</h4>
+            <div class="col-md-6" style="padding-left: 3rem;">
+                <h4 class="text-center pb-3 profile-heading">Your Personal Information</h4>
                 
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">First Name :   <%=currentUser.firstName%></li>
-                  <li class="list-group-item">Last Name :   <%=currentUser.lastName%></li>
-                  <li class="list-group-item">Username :   <%=currentUser.username%></li>
-                  <li class="list-group-item">Joined :    <%=currentUser.joined.toDateString()%></li>
-                  <li class="list-group-item">Email :  <%=currentUser.email%> </li>
-                  <li class="list-group-item">Address :  <%=currentUser.address%></li>
-                  <li class="list-group-item text-danger font-weight-bold">Violation Flag : <%=currentUser.violationFlag%> </li>
+                  <li class="list-group-item profile-list-item1" >First Name :   <%=currentUser.firstName%></li>
+                  <li class="list-group-item profile-list-item2">Last Name :   <%=currentUser.lastName%></li>
+                  <li class="list-group-item profile-list-item1">Username :   <%=currentUser.username%></li>
+                  <li class="list-group-item profile-list-item2">Joined :    <%=currentUser.joined.toDateString()%></li>
+                  <li class="list-group-item profile-list-item1">Email :  <%=currentUser.email%> </li>
+                  <li class="list-group-item profile-list-item2">Address :  <%=currentUser.address%></li>
+                  <li class="list-group-item profile-list-item1 text-danger font-weight-bold">Violation Flag : <%=currentUser.violationFlag%> </li>
                   
                 </ul>
             </div>
             
-            <div class="col-md-3">
+            <!-- <div class="col-md-3">
                 <h4 class="text-center pb-3" style="color:white;">Terms & Conditions</h4>
                 <ul style="color:white;">
                     <li>1. Copyrights owned by Admindek(C5)</li>
                     <li>2. Any queries mail to ranjuparker@gmail.com</li>
                     
                 </ul>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
