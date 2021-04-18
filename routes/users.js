@@ -14,6 +14,7 @@ router.get("/user/:page/profile", middleware.isLoggedIn, userController.getUserP
 
 router.get("/user/todo",middleware.isLoggedIn, userController.gettodo);
 
+router.get("/user/calender",middleware.isLoggedIn, userController.getcal);
 
 //user -> upload image
 router.post("/user/1/image", middleware.isLoggedIn, userController.postUploadUserImage);

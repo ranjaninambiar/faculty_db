@@ -75,6 +75,10 @@ exports.getUsertodo = (req, res, next) => {
   res.render("user/todo");
 };
 
+exports.getUsercal = (req, res, next) => {
+  res.render("user/calender");
+};
+
 exports.getUserSignUp = (req, res, next) => {
   res.render("user/userSignup");
 };

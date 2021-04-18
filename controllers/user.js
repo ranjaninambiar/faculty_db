@@ -30,6 +30,10 @@ exports.getUserProfile = (req, res, next) => {
 exports.gettodo = (req, res, next) => {
     res.render("user/todo");
 }
+
+exports.getcal = (req, res, next) => {
+    res.render("user/calender");
+}
 exports.notespage = (req, res, next) => {
     res.render("user/noteslanding");
 }
