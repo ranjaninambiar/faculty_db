@@ -103,6 +103,21 @@
   margin: 0;
 }
 
+.profile-list-item1{
+  background-color: rgba(255, 255, 255, 0.801);
+  padding: 1rem
+}
+
+.profile-list-item2{
+  background-color: rgba(253, 253, 253, 0.5);
+}
+
+.profile-heading{
+  color: rgba(43, 43, 43, 0.897);
+  font-weight: 400;
+  font-size: 2rem;
+}
+
 footer { 
   background-color: #292929;
   margin: 0;
@@ -200,6 +215,9 @@ h3{
   color:whitesmoke;
 }
 
+.tabs-container{
+  padding: 2% 3%;
+}
 
 .google-bag{
   color: black;
@@ -257,10 +275,11 @@ h3{
 
 .transparent-container{
   background-color: hsla(5, 46%, 89%, 0.774);
-
 }
 
-
+.transparent-container2{
+  background-color: hsla(0, 0%, 100%, 0.89);
+  padding: 5rem;
 
 .mt-3 .fa-user-circle,.fa-user-plus{
   text-decoration: none;
@@ -276,6 +295,7 @@ h3{
   content: "";
   transition: width 0.2s;
 }
+
 
 .underlineHover:hover {
   color: #0d0d0d;
