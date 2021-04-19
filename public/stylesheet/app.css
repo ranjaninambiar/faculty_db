@@ -380,6 +380,10 @@ cursor : pointer;
   transition:0.25s;
   cursor: pointer;
 }
+.reset-user{
+  font-weight: 700;
+  font-size: 1.4rem;
+}
 
 .form-control-address{
   background: whitesmoke;
