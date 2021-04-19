@@ -23,6 +23,29 @@ exports.getAdminSignUp = (req, res, next) => {
   res.render("signup");
 };
 
+//fpass
+exports.forgotValidation = async (req, res, next) =>{
+    User.findOne({'email': req.body.email}, function (err, user) {
+        // if there are any errors, return the error
+        console.log('authjs')
+        if (err) {
+            return done(err);
+        }
+        
+        if (user) {
+            setTimeout(function() {
+                res.redirect("/auth/user-fpassw");
+            }, 3000);
+
+        } else {
+            setTimeout(function() {
+                res.redirect("/auth/popup");
+            }, 3000);
+           
+        }}
+        )
+}
+
 exports.postAdminSignUp = async (req, res, next) => {
   try {
     if (req.body.adminCode === process.env.ADMIN_SECRET) {
@@ -180,3 +203,5 @@ transporter.sendMail(mailOptions, function(error, info){
     return res.render("user/userSignup");
   }
 };
+
+
