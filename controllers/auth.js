@@ -56,6 +56,9 @@ exports.postAdminSignUp = async (req, res, next) => {
 exports.getUserLoginPage = (req, res, next) => {
   res.render("user/userLogin");
 };
+exports.getpopup = (req, res, next) => {
+  res.render("user/popup");
+};
 
 
 exports.getUserforgotpass = async(req, res, next) => {
