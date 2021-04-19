@@ -18,7 +18,7 @@
     "dev": "SET NODE_ENV=dev && nodemon app.js"
   },
   "author": "ranjani",
-  "license": "",
+  "license": "ISC",
   "dependencies": {
     "add": "^2.0.6",
     "body-parser": "^1.18.3",
@@ -45,5 +45,13 @@
   "devDependencies": {
     "faker": "^4.1.0",
     "nodemon": "^1.19.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ranjiparker/faculty_db.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ranjiparker/faculty_db/issues"
+  },
+  "homepage": "https://github.com/ranjiparker/faculty_db#readme"
 }
