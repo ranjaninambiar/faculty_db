@@ -392,21 +392,25 @@ border-radius: 24px;
 transition:0.25s;
 cursor : pointer;
 }
+
+.reset-block{
+  padding-top: 20rem;
+}
+
 .reset-button:hover{
   background: green;
 }
-.reset-user{
-  margin-left: 850px;
-  font-weight:bolder;
-  font-size: 3rem;
-  color: #fff;
+
+.forgotpw-container{
   text-align: center;
-  font-family: Averia Serif Libre, serif;
-  
+  padding: 10rem;
+  margin: 0 35%;
 }
-.reset-block{
-  padding-top: 250px;
+
+.forgot-form{
+  text-align: center;
 }
+
 .navitems img{
   border-radius: 50%;
   margin-right: 10px;

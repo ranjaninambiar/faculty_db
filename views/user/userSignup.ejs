@@ -85,6 +85,8 @@
 
 function validateForm()
 {
+  console.log(typeof window)
+  window.location.href = '/auth/user-login'
   var em=document.getElementById("email").value;
   var pw=document.getElementById("password").value;
   var fName=document.getElementById("fname").value;
