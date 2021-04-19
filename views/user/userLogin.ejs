@@ -32,14 +32,14 @@
             <div class="card-block">
               <form class="p-3" action="/auth/user-login" method="POST">
                 <div class="form-group">
-                  <label class="form-control-label login-form-text">Username</label>
+                  <label id="l-username" class="form-control-label login-form-text">Username</label>
                   <input class="form-control" type="text" name="username" placeholder="Username">
                 </div>
                 <div class="form-group">
-                  <label class="form-control-label login-form-text">Password</label>
+                  <label id="l-password" class="form-control-label login-form-text">Password</label>
                   <input class="form-control" type="password" name="password" placeholder="Password">
                 </div>
-                <button class="login-button btn btn-block" type="submit">Login</button>
+                <button id="l-submit"class="login-button btn btn-block" type="submit">Login</button>
               </form>
                 <a href="/auth/user-signup"><i class="underlineHover">Dont have an account?</i></a>
               <a class="underlineHover" href="/auth/user-fpass">Forgot password?</a>
