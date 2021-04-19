@@ -60,7 +60,7 @@
                   <input id="cpassword" type="password" name="password" placeholder="Confrim Password" class="form-control" required>
                 </div>
                 
-                 <div class="form-group">
+                <div class="form-group">
                   <label class="form-control-label">Gender</label>
                   <input list="gender" class="form-control"  placeholder="Gender">
                   <datalist id="gender">
@@ -70,7 +70,7 @@
                   </datalist>
                 </div>
                 
-                 <div class="form-group">
+                <div class="form-group">
                   <label class="form-control-label">Address</label>
                   <input id="address"type="text" name="address" placeholder="Address" class="form-control-address" required>
                 </div>
@@ -85,18 +85,26 @@
 
 </section>
 
+</body>
 <script>
+
 
 function validateForm()
 {
-  console.log(typeof window)
-  window.location.href = '/auth/user-login'
   var em=document.getElementById("email").value;
   var pw=document.getElementById("password").value;
+  var cpw=document.getElementById("cpassword").value;
   var fName=document.getElementById("fname").value;
   var lName=document.getElementById("lname").value;
   var userName=document.getElementById("username").value;
-  return(validateFname(fName)&&validateLname(lName)&&validateEM(em)&&validateUN(userName)&&validatePW(pw));
+  if(validateFname(fName)&&validateLname(lName)&&validateEM(em)&&validateUN(userName)&&validatePW(pw)&&validateCPW(cpw,pw))
+  {
+    alert("Account created successfully")
+    return true
+  }
+  else{
+    return false
+  }
 }
 function validateEM(un)
 {
@@ -130,6 +138,20 @@ function validatePW(pw) {
     alert("Incorrect Password! \nPassword should contain atleast one number and one special character");
     return false;
   }
+  return true
+}
+
+function validateCPW(cpw,pw) {
+
+if(cpw == pw)
+{
+  return true
+}
+else{
+  alert("Password Mismatch")
+  return false
+}
+return true
 }
 
 function validateFname(fn)
