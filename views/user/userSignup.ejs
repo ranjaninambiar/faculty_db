@@ -42,7 +42,7 @@
                 </div>
                   
                 <div class="form-group">
-                  <label class="form-control-label">Pick a username</label>
+                  <label class="form-control-label">Username</label>
                   <input id="username" type="text" name="username" placeholder="Username" class="form-control" required>
                 </div>
                 
@@ -55,11 +55,15 @@
                   <label class="form-control-label">Password</label>
                   <input id="password" type="password" name="password" placeholder="Password" class="form-control" required>
                 </div>
+                <div class="form-group">
+                  <label class="form-control-label">Confrim Password</label>
+                  <input id="cpassword" type="password" name="password" placeholder="Confrim Password" class="form-control" required>
+                </div>
                 
                  <div class="form-group">
                   <label class="form-control-label">Gender</label>
-                  <input list="Gender" class="form-control"  placeholder="Gender">
-                  <datalist id="Gender">
+                  <input list="gender" class="form-control"  placeholder="Gender">
+                  <datalist id="gender">
                     <option value="Male">
                     <option value="female">
                     <option value="others">
@@ -68,10 +72,10 @@
                 
                  <div class="form-group">
                   <label class="form-control-label">Address</label>
-                  <input type="text" name="address" placeholder="Address" class="form-control-address" required>
+                  <input id="address"type="text" name="address" placeholder="Address" class="form-control-address" required>
                 </div>
-                Already have an account?<a href="/auth/user-login"><i class="underlineHover">login here</i></a>
-                <button class="submit-button"type="submit" class="btn btn-warning btn-block">Submit</button>
+                <a href="/auth/user-login"><i class="underlineHover">Already have an account?</i></a>
+                <button id="submit" class="submit-button"type="submit" class="btn btn-warning btn-block">Submit</button>
               </form>
             </div>
         </div>
@@ -100,12 +104,12 @@ function validateEM(un)
     return true;
   else if(un=="")
   {
-    alert("Empty Email")
+    alert("Incorrect Email! \nEmpty Email")
     return false;
   }
   else
   {
-    alert("Not a Valid Email")
+    alert("Incorrect Email! \nNot a Valid Email")
     return false;
   }
 }
@@ -119,11 +123,11 @@ function validatePW(pw) {
 
 
   if(pw.length < minNumberofChars || pw.length > maxNumberofChars){
-    alert("Password length must be between 6 and 16");
+    alert("Incorrect Password! \nPassword length must be between 6 and 16");
     return false;
   }
   if(!regularExpression.test(pw)) {
-    alert("Password should contain atleast one number and one special character");
+    alert("Incorrect Password! \nPassword should contain atleast one number and one special character");
     return false;
   }
 }
@@ -134,12 +138,12 @@ function validateFname(fn)
 
   if(fn == "")
   {
-    alert("Firstname Should not be empty")
+    alert("Incorrect Firstname! \nFirstname Should not be empty")
     return false;
   }
   if(!regex.test(fn))
   {
-    alert("Name can only contain a-z , . ' -")
+    alert("Incorrect Firstname! \nFirstname can only contain alphabets, comma, period, apostrophe, hypen")
     return false;
   }
   return true
@@ -150,12 +154,12 @@ function validateLname(ln)
 
   if(ln == "")
   {
-    alert("Firstname Should not be empty")
+    alert("Incorrect Lastname! \nLastname Should not be empty")
     return false;
   }
   if(!regex.test(ln))
   {
-    alert("Name can only contain alphabets, comma, period, apostrophe, and hyphen")
+    alert("Incorrect Lastname! \nLastname can only contain alphabets, comma, period, apostrophe, hyphen")
     return false;
   }
   return true
@@ -167,12 +171,12 @@ function validateUN(un)
 
   if(un == "")
   {
-    alert("Firstname Should not be empty")
+    alert("Incorrect Username! \nUsername Should not be empty")
     return false;
   }
   if(!regex.test(un))
   {
-    alert("username can only contain alphabets, hephen, and underscore ")
+    alert("Incorrect Username! \nUsername can only contain alphabets, Underscore, hyphen")
     return false;
   }
   return true

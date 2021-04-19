@@ -20,6 +20,7 @@
   "author": "ranjani",
   "license": "",
   "dependencies": {
+    "add": "^2.0.6",
     "body-parser": "^1.18.3",
     "connect-flash": "^0.1.1",
     "connect-mongodb-session": "^2.4.1",
@@ -36,9 +37,10 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^5.0.1",
-    "sharp": "^0.27.0",
+    "sharp": "^0.27.2",
     "uid": "^1.0.0",
-    "uuid": "^3.4.0"
+    "uuid": "^3.4.0",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "faker": "^4.1.0",

@@ -1,4 +1,14 @@
-<div class="reset-block">
+<% include ../partials/header %>
+<body style="padding: 0;">  
+  <div class="container-fluid" style="padding: 0; margin: 0;">
+      <div class="header-container">
+          <img class="header-image" src="https://www.amrita.edu/sites/default/files/logo.png">
+          <!-- https://www.pngitem.com/pimgs/m/539-5392274_amrita-university-logo-hd-png-download.png -->
+          <h1 class="header-text">Faculty Dashboard</h1>
+      </div>
+  </div>
+  <div class="container mt-5">
+    <div class="row">
   <link rel="stylesheet" href="/stylesheet/app.css"> 
 <!-- 
   <div class="container transparent-container forgotpw-container">
@@ -12,21 +22,27 @@
           <button class="reset-button" type="submit" class="btn btn-success btn-block">Send a reset link</button>
         </form>
       </div>
-    </div> -->
+    </div> 
 
   </div>
-</div>
+</div> -->
+   <div class="col-md-6 offset-md-3">
+   <div class="card transparent-container">
     <form onsubmit="return link()" class="p-3" >
-      <div class="form-group">
-        <label class="reset-user" class="form-control-label">Email id</label>
+      <div class="form-group ">
+        <h4 class="h3-login login-h4">Get Reset Link</h4>
+        <label class="form-control-label login-form-text">Email id</label>
         <input id="email" type="text" name="email" placeholder="Enter your email id" class="form-control">
       </div>
       <div class="form-group">
         <label class="form-control-label login-form-text">Username</label>
         <input id="username" class="form-control" type="text" name="username" placeholder="Enter your username">
       </div>
-      <button class="reset-button" type="submit" class="btn btn-success btn-block">Send a reset link</button>
+      <button class="reset-button" type="submit" class="btn btn-success btn-block">Submit</button>
     </form>
+</div>
+</div>
+</div>
 </div>
 
 <script data-main = "scripts/main" src = "scripts/require.js"></script>
@@ -64,3 +80,4 @@
 
   
 </script>
+<% include ../partials/footer %>
