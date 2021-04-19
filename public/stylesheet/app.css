@@ -203,7 +203,10 @@ h3{
   font-size: 2rem;
   color: #383838;
 }
-
+.btn-custom-red .fa-user-circle{
+  font-size: 2rem;
+  color: #CCC;
+}
 .btn-custom-red{
   color: #CCC;
   text-decoration: none;
@@ -295,6 +298,14 @@ h3{
   content: "";
   transition: width 0.2s;
 }
+.strike {
+  text-decoration: line-through;
+}
+
+td{
+  border: 1px solid black;
+  padding: 5px;
+}
 
 
 .underlineHover:hover {
@@ -304,7 +315,7 @@ h3{
 .underlineHover:hover:after{
   width: 100%;
 }
-.login-button,.submit-button{
+.login-button,.submit-button,.reset-button{
 border:0;
 background:#a4123f;
 display:block;
@@ -319,12 +330,30 @@ border-radius: 24px;
 transition:0.25s;
 cursor : pointer;
 }
-
+.sort-button,.add-button{
+border:0;
+background:#a4123f;
+display:block;
+margin: 20px auto;
+text-align: center;
+border:2px solid #80082c;
+padding:14px 20px;
+width:100px;
+outline:none;
+color:rgb(196, 196, 196);
+border-radius: 24px;
+transition:0.25s;
+cursor : pointer;
+}
+.sort-button:hover,.add-button:hover{
+  background:#80082c;
+  color: white;
+}
 .login-card-header{
   padding: 2rem 0;
 }
 
-.login-button,.submit-button:hover{
+.login-button,.submit-button,.reset-button:hover{
   background:#80082c;
   color: white;
 }
@@ -376,31 +405,30 @@ cursor : pointer;
   width:400px;
   border-color:green;
 }
-
-.reset-button{
+.catfil{
   border:0;
-background: black;
-display:block;
-margin: 20px auto;
-text-align: center;
-border:2px solid green;
-padding:14px 20px;
-width: 150px;
-outline:none;
-color:white;
-border-radius: 24px;
-transition:0.25s;
-cursor : pointer;
+  background: whitesmoke;
+  display:block;
+  margin: 0.8rem auto 3rem auto;
+  text-align: center;
+  border:2px solid #8f5063;
+  padding:14px 10px;
+  width:300px;
+  outline:none;
+  color:rgb(39, 39, 39);
+  border-radius: 24px;
+  transition:0.25s;
+  cursor: pointer;
 }
-
-.reset-block{
-  padding-top: 20rem;
+#todoTable table,tr,th
+{
+  color: white;
 }
-
-.reset-button:hover{
-  background: green;
+#todoTable table,td
+{
+  border: 1px solid black;
+  color: white;
 }
-
 .forgotpw-container{
   text-align: center;
   padding: 10rem;
