@@ -27,7 +27,6 @@ exports.getAdminSignUp = (req, res, next) => {
 exports.forgotValidation = async (req, res, next) =>{
     User.findOne({'email': req.body.email}, function (err, user) {
         // if there are any errors, return the error
-        console.log('authjs')
         if (err) {
             return done(err);
         }
