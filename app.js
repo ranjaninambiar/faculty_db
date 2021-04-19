@@ -4,6 +4,7 @@ const express = require("express"),
   mongoose = require("mongoose"),
   session = require("express-session"),
   passport = require("passport"),
+  
   multer = require("multer"),
    dotenv = require("dotenv"),
  
@@ -76,6 +77,8 @@ app.use(passport.initialize()); //must declared before passport.session()
 app.use(passport.session());
 
 passport.use(new localStrategy(User.authenticate()));
+
+
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 

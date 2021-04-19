@@ -38,15 +38,36 @@ router.get("/auth/user-login", authController.getUserLoginPage);
 
 router.post("/auth/user-login", passport.authenticate("local", {
         successRedirect : "/user/1",
-        failureRedirect : "/auth/user-login"
+        failureRedirect : "/auth/popup"
     }), (req, res)=> {
         MAX_LOGIN_ATTEMPTS -=1
 });
+
+// router.post("/auth/user-fpass", function (req, res) {
+//     User.findOne({'email': req.body.email}, function (err, user) {
+//         // if there are any errors, return the error
+//         if (err) {
+//             return done(err);
+//         }
+//         console.log(typeof(window))
+//         if (user) {
+//             setTimeout(function() {
+//                 window.location.href = "/auth/user-fpassw";
+//             }, 3000);
+
+//         } else {
+//             setTimeout(function() {
+//                 window.location.href = "/auth/popup";
+//             }, 3000);
+           
+//         }}
+//         )});
+router.get("/auth/popup", authController.getpopup);
 router.get("/auth/user-fpass", authController.getUserforgotpass);
 router.get("/auth/user-resetlink", authController.getUserresetlink);
 router.get("/auth/user-todo", authController.getUsertodo);
 router.get("/auth/user-cal", authController.getUsercal);
-router.post("/auth/user-fpass",authController.postUserforgotpass);
+router.get("/auth/user-fpassw",authController.postUserforgotpass);
 //user -> user logout handler
 router.get("/auth/user-logout", authController.getUserLogout);
 
