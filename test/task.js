@@ -6,7 +6,7 @@ chai.should();
 chai.use(chaiHttp);
 
 
-//landings
+//landings page
 describe('Guest Lecture', () => {
 
 
