@@ -62,12 +62,7 @@
                 
                 <div class="form-group">
                   <label class="form-control-label">Gender</label>
-                  <input list="gender" class="form-control"  placeholder="Gender">
-                  <datalist id="gender">
-                    <option value="Male">
-                    <option value="female">
-                    <option value="others">
-                  </datalist>
+                  <input id="gender" type="text" name="gender" placeholder="Gender" class="form-control">
                 </div>
                 
                 <div class="form-group">
@@ -97,7 +92,8 @@ function validateForm()
   var fName=document.getElementById("fname").value;
   var lName=document.getElementById("lname").value;
   var userName=document.getElementById("username").value;
-  if(validateFname(fName)&&validateLname(lName)&&validateEM(em)&&validateUN(userName)&&validatePW(pw)&&validateCPW(cpw,pw))
+  var gend=document.getElementById("gender").value;
+  if(validateFname(fName)&&validateLname(lName)&&validateEM(em)&&validateUN(userName)&&validatePW(pw)&&validateCPW(cpw,pw)&&validateG(gend))
   {
     alert("Account created successfully")
     return true
@@ -202,6 +198,21 @@ function validateUN(un)
     return false;
   }
   return true
+}
+function validateG(g)
+{
+  if(g.equalsIgnoreCase("Male") || g.equalsIgnoreCase("Female")||  g.equalsIgnoreCase("Other"))
+    return true;
+  else if(g=="")
+  {
+    alert("Incorrect Gender! \nEmpty Gender")
+    return false;
+  }
+  else
+  {
+    alert("Incorrect Gender! \nNot a Valid Gender")
+    return false;
+  }
 }
 
 </script>
