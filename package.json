@@ -3,25 +3,30 @@
   "version": "1.0.0",
   "description": "Fac dashboard manager",
   "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
   "keywords": [
     "Javascript",
     "NodeJS",
     "expressjs"
   ],
+  "scripts": {
+    "test": "mocha --timeout 15000",
+    "start": "node app.js",
+    "dev": "SET NODE_ENV=dev && nodemon app.js"
+  },
   "engines": {
     "node": "10.16.0",
     "npm": "6.9.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "dev": "SET NODE_ENV=dev && nodemon app.js"
   },
   "author": "ranjani",
   "license": "ISC",
   "dependencies": {
     "add": "^2.0.6",
     "body-parser": "^1.18.3",
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
     "connect-flash": "^0.1.1",
     "connect-mongodb-session": "^2.4.1",
     "dotenv": "^8.2.0",
@@ -30,6 +35,7 @@
     "express-session": "^1.17.1",
     "fullcalendar": "^5.6.0",
     "method-override": "^3.0.0",
+    "mocha": "^8.3.2",
     "mongoose": "^5.11.8",
     "multer": "^1.4.1",
     "nodemailer": "^6.5.0",

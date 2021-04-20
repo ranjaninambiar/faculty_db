@@ -123,6 +123,6 @@ app.use(authRoutes);
 
 const PORT = process.env.PORT || 2500;
 
-app.listen(PORT, () => {
+module.exports = app.listen(PORT, () => {
   console.log(`server is running`);
 });
