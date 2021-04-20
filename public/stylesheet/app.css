@@ -316,7 +316,6 @@ td{
   width: 100%;
 }
 .login-button,.submit-button,.reset-button{
-border:0;
 background:#a4123f;
 display:block;
 margin: 20px auto;
@@ -331,7 +330,6 @@ transition:0.25s;
 cursor : pointer;
 }
 .sort-button,.add-button{
-border:0;
 background:#a4123f;
 display:block;
 margin: 20px auto;
@@ -366,7 +364,6 @@ cursor : pointer;
 }
 
 .form-control{
-  border:0;
   background: whitesmoke;
   display:block;
   margin: 0.8rem auto 3rem auto;
@@ -410,7 +407,6 @@ cursor : pointer;
   border-color:green;
 }
 .catfil{
-  border:0;
   background: whitesmoke;
   display:block;
   margin: 0.8rem auto 3rem auto;
