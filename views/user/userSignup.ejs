@@ -201,7 +201,7 @@ function validateUN(un)
 }
 function validateG(g)
 {
-  if(g.equalsIgnoreCase("Male") || g.equalsIgnoreCase("Female")||  g.equalsIgnoreCase("Other"))
+  if(g=="Male"||  g=="male" || g=="Female" || g=="female" || g=="Other" || g=="other" ||g=="Others" || g=="others")
     return true;
   else if(g=="")
   {
