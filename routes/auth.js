@@ -52,6 +52,7 @@ router.get("/auth/user-fpass", authController.getUserforgotpass);
 router.get("/auth/user-resetlink", authController.getUserresetlink);
 router.get("/auth/user-todo", authController.getUsertodo);
 router.get("/auth/user-cal", authController.getUsercal);
+router.get("/auth/user-news", authController.getUsernewsindex);
 router.get("/auth/user-fpassw",authController.postUserforgotpass);
 //user -> user logout handler
 router.get("/auth/user-logout", authController.getUserLogout);

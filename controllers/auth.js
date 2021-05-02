@@ -104,6 +104,10 @@ exports.getUsercal = (req, res, next) => {
   res.render("user/calender");
 };
 
+exports.getUsernewsindex = (req, res, next) => {
+  res.render("user/newslettersindex");
+};
+
 exports.getUserSignUp = (req, res, next) => {
   res.render("user/userSignup");
 };
