@@ -1,0 +1,66 @@
+<% include ../partials/header %>
+
+<!--NAVIGATION BAR FOR ADMIN-->
+<% include ../partials/userNav %>
+
+<% include ../partials/alerts %>
+
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card">
+              <div class="card-header text-center">
+                <h4>Add Course</h4>
+              </div>
+                <div class="card-block">
+                  <form class="p-3" action="/user/1/courses/add" method="POST">
+                      
+                    <div class="form-group">
+                      <label class="form-control-label">Title</label>
+                      <input type="text" name="course[name]" placeholder="Course Title" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label class="form-control-label">Course Type</label>
+                      <input type="text" name="course[type]" placeholder="Elective/Core" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label class="form-control-label">Course Code</label>
+                      <input type="text" name="course[code]" placeholder="Couse code" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label class="form-control-label">Mentor</label>
+                      <input type="text" name="course[mentor]" placeholder="Name of mentor" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label class="form-control-label">Course Domain</label>
+                      <input type="text" name="course[domain]" placeholder="Domain in CSE" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-control-label">Course Period</label>
+                        <input type="Number" name="course[period]" placeholder="Period of course in weeks" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label class="form-control-label">Ref book</label>
+                      <textarea name="course[description]" cols="30" rows="10" class="form-control"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-warning btn-block">Add course</button>
+                  </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+<script>
+  CKEDITOR.replace('course[description]');
+</script>
+
+<% include ../partials/footer %>

@@ -26,7 +26,7 @@ const express = require("express"),
 // uncomment below line for first time to seed database;
 //Seed(1000);
 
-// if (process.env.NODE_ENV !== "production")  ok, bye then👋
+// if (process.env.NODE_ENV !== "production") 
 
 
 // app config

@@ -31,11 +31,28 @@ router.get("/user/1/notification", middleware.isLoggedIn, userController.getNoti
 router.get("/user/1/courses",middleware.isLoggedIn,userController.coursespage );
 
 
+router.get("/user/1/courses/add", middleware.isLoggedIn, userController.getAddNewCourse);
+
+router.post("/user/1/courses/add", middleware.isLoggedIn, userController.postAddNewCourse);
+
 router.get('/user/1/notes-new', middleware.isLoggedIn,userController.notespage );
 router.get('/user/1/notes-newnote', middleware.isLoggedIn,userController.newnotepage );
 router.post('/:id',middleware.isLoggedIn,userController.deletenote );
 router.post('/user/1/notes-newnote', middleware.isLoggedIn, userController.postnotes);
 
+router.get("/user/1/courseInventory/:filter/:value/:page", middleware.isLoggedIn, userController.getUserCourseInventory);
+
+// admin -> show searched books
+router.post("/user/1/courseInventory/:filter/:value/:page",middleware.isLoggedIn, userController.postUserCourseInventory);
+
+//admin -> show books to be updated
+router.get("/user/1/course/update/:course_id", middleware.isLoggedIn, userController.getUpdateCourse);
+
+//admin -> update book
+router.post("/user/1/course/update/:course_id", middleware.isLoggedIn,userController.postUpdateCourse);
+
+//admin -> delete book
+router.get("/user/1/course/delete/:course_id", middleware.isLoggedIn, userController.getDeleteCourse);
 /*
 
 //user -> issue a book

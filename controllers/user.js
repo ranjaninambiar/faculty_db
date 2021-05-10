@@ -5,7 +5,8 @@ const fs = require('fs');
 // importing models
 const User = require("../models/user"),
       Activity = require("../models/activity"),
-      Note = require("../models/notes");
+      Note = require("../models/notes"),
+      Course = require("../models/course");
       //Book = require("../models/book"),
       //Issue = require("../models/issue"),
       //Comment = require("../models/comment");
@@ -30,6 +31,163 @@ exports.getUserProfile = (req, res, next) => {
 exports.gettodo = (req, res, next) => {
     res.render("user/todo");
 }
+exports.getAddNewCourse= (req, res, next) => {
+    res.render("user/addcourse");
+}
+
+exports.postAddNewCourse = async(req, res, next) => {
+    try {
+        const course_info = req.body.course;
+        //book_info.description = req.sanitize(book_info.description);
+        
+        const isDuplicate = await Course.find(course_info);
+
+        if(isDuplicate.length > 0) {
+            req.flash("error", "This course is already registered in inventory");
+            return res.redirect('back');
+        } 
+
+        const new_course = new Course(course_info);
+        await new_course.save();
+        req.flash("success", `A new course named ${new_course.title} is added to the inventory`);
+        res.redirect("/user/1/courseInventory/all/all/1");
+    } catch(err) {
+        console.log(err);
+        res.redirect('back');
+    }
+};
+
+exports.getUserCourseInventory = async(req, res, next) => {
+    try{
+        let page = req.params.page || 1;
+        const filter = req.params.filter;
+        const value = req.params.value;
+
+        // console.log(filter, value);
+        // // constructing search object
+        let searchObj = {};
+        if(filter !== 'all' && value !== 'all') {
+            // fetch books by search value and filter
+            searchObj[filter] = value;
+         }
+
+        // get the book counts
+        const courses_count = await Course.find(searchObj).countDocuments();
+
+        // fetching books
+        const courses = await Course
+            .find(searchObj)
+            .skip((PER_PAGE * page) - PER_PAGE)
+            .limit(PER_PAGE)
+        
+        // rendering admin/bookInventory
+        res.render("user/courseInventory", {
+            courses : courses,
+            current : page,
+            pages: Math.ceil(courses_count / PER_PAGE),
+            filter : filter,
+            value : value,
+        });
+    } catch(err) {
+        // console.log(err.messge);
+        return res.redirect('back');
+    }
+}
+
+// admin -> return book inventory by search query working procedure
+/*
+    same as getAdminBookInventory method
+*/
+exports.postUserCourseInventory = async(req, res, next) => {
+    try {
+        let page = req.params.page || 1;
+        const filter = req.body.filter.toLowerCase();
+        const value = req.body.searchName;
+
+        if(value == "") {
+            req.flash("error", "Search field is empty. Please fill the search field in order to get a result");
+            return res.redirect('back');
+        }
+        const searchObj = {};
+        searchObj[filter] = value;
+
+        // get the books count
+        const courses_count = await Course.find(searchObj).countDocuments();
+
+        // fetch the books by search query
+        const courses = await Course
+            .find(searchObj)
+            .skip((PER_PAGE * page) - PER_PAGE)
+            .limit(PER_PAGE);
+        
+        // rendering admin/bookInventory
+        res.render("user/courseInventory", {
+            courses: courses,
+            current: page,
+            pages: Math.ceil(courses_count / PER_PAGE),
+            filter: filter,
+            value: value,
+        });
+
+    } catch(err) {
+        // console.log(err.message);
+        return res.redirect('back');
+    }
+}
+
+exports.getUpdateCourse = async (req, res, next) => {
+
+    try {
+        const course_id = req.params.course_id;
+        const course = await Course.findById(course_id);
+
+        res.render('user/updatecourse', {
+            course: course,
+        })
+    } catch(err) {
+        console.log(err);
+        return res.redirect('back');
+    }
+};
+
+// admin -> post update book
+exports.postUpdateCourse = async(req, res, next) => {
+
+    try {
+        //const description = req.sanitize(req.body.book.description);
+        const course_info = req.body.course;
+        const course_id = req.params.course_id;
+
+        await Course.findByIdAndUpdate(course_id, course_info);
+
+        res.redirect("/user/1/courseInventory/all/all/1");
+    } catch (err) {
+        console.log(err);
+        res.redirect('back');
+    }
+};
+
+// admin -> delete book
+exports.getDeleteCourse = async(req, res, next) => {
+    try {
+        const course_id = req.params.course_id;
+
+        const course = await Course.findById(course_id);
+        await course.remove();
+
+        req.flash("success", `A course named ${course.name} is just deleted!`);
+        res.redirect('back');
+
+    } catch(err) {
+        console.log(err);
+        res.redirect('back');
+    }
+};
+
+
+
+
+
 
 exports.getcal = (req, res, next) => {
     res.render("user/calender");

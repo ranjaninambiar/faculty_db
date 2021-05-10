@@ -2,28 +2,29 @@ const mongoose = require("mongoose"),
   passportLocalMongoose = require("passport-local-mongoose");
 
 const courseSchema = new mongoose.Schema({
-  course_name: {
+name: {
     type: String,
     trim: true,
   },
-  course_type: {
+type: {
     type: String,
     trim: true,
   },
-  course_code: {
+code: {
     type: String,
     trim: true,
   },
-  course_mentor: {
+mentor: {
     type: String,
     trim: true,
   },
-  course_domain:{
+ domain:{
     type: String,
     trim: true,
   },
   
-  course_period: { type: Date, default: Date.now() },
+  period: { type: Number, default: 1 },
+  description : String,
   /*
   bookIssueInfo: [
     {
