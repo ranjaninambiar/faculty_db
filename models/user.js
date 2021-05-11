@@ -26,6 +26,17 @@ const userSchema = new mongoose.Schema({
 
   loginAttempts: { type: Number, required: true, default: 3 },
     lockUntil: { type: Number },
+
+    courseIssueInfo: [
+      {
+        course_info: {
+          id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Issue",
+          },
+        },
+      },
+    ],
   /*
   bookIssueInfo: [
     {

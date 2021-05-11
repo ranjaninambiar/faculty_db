@@ -15,10 +15,13 @@ const express = require("express"),
   MongoStore = require("connect-mongodb-session")(session),
   flash = require("connect-flash"),
   User = require("./models/user"),
+  Activity = require("./models/activity"),
   Note = require('./models/notes'),
+  Issue = require('./models/courseissue'),
+  Course = require('./models/course'),
   userRoutes = require("./routes/users"),
   //adminRoutes = require("./routes/admin"),
-  //bookRoutes = require("./routes/books"),
+  courseRoutes = require("./routes/courses"),
   authRoutes = require("./routes/auth");
  // mongoString = "mongodb+srv://ranjani:<anandita>@hostman.npiob.mongodb.net/<bookstore>?retryWrites=true&w=majority";
 // Seed = require('./seed');
@@ -42,6 +45,8 @@ app.get('/user/1/notes-new', async (req, res) => {
   const notes = await Note.find().sort('-createdAt');
   res.render('user/noteslanding', { notes: notes });
 });
+
+
 // db config
 mongoose
   .connect(process.env.MONGODB_URI, {
@@ -114,11 +119,65 @@ app.use((req, res, next) => {
   res.locals.warning = req.flash("warning");
   next();
 });
+app.post('/courses/:course_id/issue/:user_id', async (req, res) => {
+  try {
+    const course = await Course.findById(req.params.course_id);
+    const user = await User.findById(req.params.user_id);
+
+    // registering issue
+    const issue =  new Issue({
+        course_info: {
+            id: course._id,
+            name: course.name,
+            mentor: course.mentor,
+            type: course.type,
+            code: course.code,
+            domain: course.domain,
+            period: course.period,
+        },
+        user_id: {
+            id: user._id,
+            username: user.username,
+        }
+    });
+
+    // putting issue record on individual user document
+    user.courseIssueInfo.push(course._id);
+
+    // logging the activity
+    const activity = new Activity({
+        info: {
+            id: course._id,
+            name: course.name,
+        },
+        category: "Issue",
+        time: {
+            id: issue._id,
+            issueDate: issue.issueDate,
+        },
+        user_id: {
+            id: user._id,
+            username: user.username,
+        }
+    });
+
+    // await ensure to synchronously save all database alteration
+    await issue.save();
+    await user.save();
+    await course.save();
+    await activity.save();
+} catch(err) {
+    console.log(err);
+    return res.redirect("back");
+}
+const activities = await Activity.find().sort('-entryTime');
+  res.render('user/notif', { activities: activities });
+});
 
 //Routes
 app.use(userRoutes);
 //app.use(adminRoutes);
-//app.use(bookRoutes);
+app.use(courseRoutes);
 app.use(authRoutes);
 
 const PORT = process.env.PORT || 2500;

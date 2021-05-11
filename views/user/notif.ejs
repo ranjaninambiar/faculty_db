@@ -1,0 +1,103 @@
+<% include ../partials/header %>
+
+<!--NAVIGATION BAR FOR USER-->
+<% include ../partials/userNav %>
+<script>
+    var activity = require("../../models/activity");
+
+</script>
+
+<!--DASHBOARD SECTION-->
+<header id="main-header" class="py-2 bg-warning text-white ">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1><i class="fa fa-gear"></i> Dashboard</h1>
+      </div>
+    </div>
+  </div>
+</header>
+
+<% include ../partials/alerts %>
+<!-- ACTIONS -->
+<section id="actions" class="py-4 mb-4 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <a href="/courses/all/all/1" class="btn btn-success btn-block">
+          <i class="fa fa-plus"></i> Issue Book
+        </a>
+      </div>
+    </div>
+    </div>
+</section>
+
+
+
+<section id="home" class="mt-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card">
+            <img src="../public/image/profile/profile.png" class="card-img-top p-1" alt="...">
+            <div class="card-body">
+              <p>Name : <%=currentUser.firstName%>.firstName%> <%=currentUser.lastName%></p>
+              <p>Email : <%=currentUser.email%></p>
+              <p>Address: <%=currentUser.address%></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9">
+          
+          <div class="card">
+            <div class="card-header text-center">
+              <h4>Recent Activities</h4>
+            </div>
+            <table class="table table-striped">
+              <thead class="thead-inverse">
+                <tr>
+                  <th>Info</th>
+                  <th>Category</th>
+                  <th>Date</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+              <% activities.forEach(activity => { %>
+                    <% if(activity.category == 'Issue') { %>
+                         <tr>
+                            <td>You have <span class="table-text">issued</span> <%=activity.info.name%></td></td>
+                            <td><%=activity.category%></td>
+                            <td>
+                              <p>Issue :  <%=activity.time.issueDate.toDateString()%></p>
+                              
+                            </td>
+                          </tr>  
+                   <%  }  %>
+                          
+                      <% if(activity.category == 'Update Password') { %>
+                                <tr>
+                                  <td>You have recently <span class="table-text">updated your password</span></td>
+                                  <td><%=activity.category%></td>
+                                  <td>
+                                    <%=activity.entryTime.toDateString()%>
+                                    </td>
+                                  <td>
+                                    <button class="btn btn-sm btn-success">Changed Successfully!</button>
+                                  </td>
+                              </tr>
+                      <% } %>
+                
+                <% }); %>
+                
+                
+              </tbody>
+            </table>
+            
+             
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

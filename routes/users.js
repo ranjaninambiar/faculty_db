@@ -32,6 +32,7 @@ router.get("/user/1/courses",middleware.isLoggedIn,userController.coursespage );
 
 
 router.get("/user/1/courses/add", middleware.isLoggedIn, userController.getAddNewCourse);
+router.get("/user/1/courses/quizindex", middleware.isLoggedIn, userController.getQuizindex);
 
 router.post("/user/1/courses/add", middleware.isLoggedIn, userController.postAddNewCourse);
 
@@ -53,8 +54,10 @@ router.post("/user/1/course/update/:course_id", middleware.isLoggedIn,userContro
 
 //admin -> delete book
 router.get("/user/1/course/delete/:course_id", middleware.isLoggedIn, userController.getDeleteCourse);
-/*
 
+router.get("/courses/:course_id/issue/:user_id", middleware.isLoggedIn, userController.postIssueCourse);
+
+/*
 //user -> issue a book
 router.post("/books/:book_id/issue/:user_id", middleware.isLoggedIn, userController.postIssueBook);
 

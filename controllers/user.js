@@ -6,9 +6,9 @@ const fs = require('fs');
 const User = require("../models/user"),
       Activity = require("../models/activity"),
       Note = require("../models/notes"),
-      Course = require("../models/course");
-      //Book = require("../models/book"),
-      //Issue = require("../models/issue"),
+      Course = require("../models/course"),
+      //course = require("../models/course"),
+      Issue = require("../models/courseissue");
       //Comment = require("../models/comment");
 
 // importing utilities
@@ -31,6 +31,10 @@ exports.getUserProfile = (req, res, next) => {
 exports.gettodo = (req, res, next) => {
     res.render("user/todo");
 }
+
+exports.getQuizindex = (req, res, next) => {
+    res.render("user/quiz");
+}
 exports.getAddNewCourse= (req, res, next) => {
     res.render("user/addcourse");
 }
@@ -38,7 +42,7 @@ exports.getAddNewCourse= (req, res, next) => {
 exports.postAddNewCourse = async(req, res, next) => {
     try {
         const course_info = req.body.course;
-        //book_info.description = req.sanitize(book_info.description);
+        //course_info.description = req.sanitize(course_info.description);
         
         const isDuplicate = await Course.find(course_info);
 
@@ -56,7 +60,60 @@ exports.postAddNewCourse = async(req, res, next) => {
         res.redirect('back');
     }
 };
+exports.postIssueCourse = async(req, res, next) => {
+    try {
+        const course = await Course.findById(req.params.course_id);
+        const user = await User.findById(req.params.user_id);
 
+        // registering issue
+        const issue =  new Issue({
+            course_info: {
+                id: course._id,
+                name: course.name,
+                mentor: course.mentor,
+                type: course.type,
+                code: course.code,
+                domain: course.domain,
+                period: course.period,
+            },
+            user_id: {
+                id: user._id,
+                username: user.username,
+            }
+        });
+
+        // putting issue record on individual user document
+        user.courseIssueInfo.push(course._id);
+
+        // logging the activity
+        const activity = new Activity({
+            info: {
+                id: course._id,
+                name: course.name,
+            },
+            category: "Issue",
+            time: {
+                id: issue._id,
+                issueDate: issue.issueDate,
+            },
+            user_id: {
+                id: user._id,
+                username: user.username,
+            }
+        });
+
+        // await ensure to synchronously save all database alteration
+        await issue.save();
+        await user.save();
+        await course.save();
+        await activity.save();
+
+        res.render("user/notif");
+    } catch(err) {
+        console.log(err);
+        return res.redirect("back");
+    }
+}
 exports.getUserCourseInventory = async(req, res, next) => {
     try{
         let page = req.params.page || 1;
@@ -67,20 +124,20 @@ exports.getUserCourseInventory = async(req, res, next) => {
         // // constructing search object
         let searchObj = {};
         if(filter !== 'all' && value !== 'all') {
-            // fetch books by search value and filter
+            // fetch courses by search value and filter
             searchObj[filter] = value;
          }
 
-        // get the book counts
+        // get the course counts
         const courses_count = await Course.find(searchObj).countDocuments();
 
-        // fetching books
+        // fetching courses
         const courses = await Course
             .find(searchObj)
             .skip((PER_PAGE * page) - PER_PAGE)
             .limit(PER_PAGE)
         
-        // rendering admin/bookInventory
+        // rendering admin/courseInventory
         res.render("user/courseInventory", {
             courses : courses,
             current : page,
@@ -94,9 +151,9 @@ exports.getUserCourseInventory = async(req, res, next) => {
     }
 }
 
-// admin -> return book inventory by search query working procedure
+// admin -> return course inventory by search query working procedure
 /*
-    same as getAdminBookInventory method
+    same as getAdmincourseInventory method
 */
 exports.postUserCourseInventory = async(req, res, next) => {
     try {
@@ -111,16 +168,16 @@ exports.postUserCourseInventory = async(req, res, next) => {
         const searchObj = {};
         searchObj[filter] = value;
 
-        // get the books count
+        // get the courses count
         const courses_count = await Course.find(searchObj).countDocuments();
 
-        // fetch the books by search query
+        // fetch the courses by search query
         const courses = await Course
             .find(searchObj)
             .skip((PER_PAGE * page) - PER_PAGE)
             .limit(PER_PAGE);
         
-        // rendering admin/bookInventory
+        // rendering admin/courseInventory
         res.render("user/courseInventory", {
             courses: courses,
             current: page,
@@ -150,11 +207,11 @@ exports.getUpdateCourse = async (req, res, next) => {
     }
 };
 
-// admin -> post update book
+// admin -> post update course
 exports.postUpdateCourse = async(req, res, next) => {
 
     try {
-        //const description = req.sanitize(req.body.book.description);
+        //const description = req.sanitize(req.body.course.description);
         const course_info = req.body.course;
         const course_id = req.params.course_id;
 
@@ -167,7 +224,7 @@ exports.postUpdateCourse = async(req, res, next) => {
     }
 };
 
-// admin -> delete book
+// admin -> delete course
 exports.getDeleteCourse = async(req, res, next) => {
     try {
         const course_id = req.params.course_id;
@@ -337,33 +394,33 @@ exports.getNotification = async(req, res, next) => {
 exports.coursespage = async(req, res, next) => {
     res.render("user/course");
 }
-//user -> issue a book
+//user -> issue a course
 /*
-exports.postIssueBook = async(req, res, next) => {
+exports.postIssuecourse = async(req, res, next) => {
     if(req.user.violationFlag) {
-        req.flash("error", "You are flagged for violating rules/delay on returning books/paying fines. Untill the flag is lifted, You can't issue any books");
+        req.flash("error", "You are flagged for violating rules/delay on returning courses/paying fines. Untill the flag is lifted, You can't issue any courses");
         return res.redirect("back");
     }
 
-    if(req.user.bookIssueInfo.length >= 5) {
-        req.flash("warning", "You can't issue more than 5 books at a time");
+    if(req.user.courseIssueInfo.length >= 5) {
+        req.flash("warning", "You can't issue more than 5 courses at a time");
         return res.redirect("back");
     }
 
     try {
-        const book = await Book.findById(req.params.book_id);
+        const course = await course.findById(req.params.course_id);
         const user = await User.findById(req.params.user_id);
 
         // registering issue
-        book.stock -= 1;
+        course.stock -= 1;
         const issue =  new Issue({
-            book_info: {
-                id: book._id,
-                title: book.title,
-                author: book.author,
-                ISBN: book.ISBN,
-                category: book.category,
-                stock: book.stock,
+            course_info: {
+                id: course._id,
+                title: course.title,
+                author: course.author,
+                ISBN: course.ISBN,
+                category: course.category,
+                stock: course.stock,
             },
             user_id: {
                 id: user._id,
@@ -372,19 +429,19 @@ exports.postIssueBook = async(req, res, next) => {
         });
 
         // putting issue record on individual user document
-        user.bookIssueInfo.push(book._id);
+        user.courseIssueInfo.push(course._id);
 
         // logging the activity
         const activity = new Activity({
             info: {
-                id: book._id,
-                title: book.title,
+                id: course._id,
+                title: course.title,
             },
             category: "Issue",
             time: {
                 id: issue._id,
-                issueDate: issue.book_info.issueDate,
-                returnDate: issue.book_info.returnDate,
+                issueDate: issue.course_info.issueDate,
+                returnDate: issue.course_info.returnDate,
             },
             user_id: {
                 id: user._id,
@@ -395,10 +452,10 @@ exports.postIssueBook = async(req, res, next) => {
         // await ensure to synchronously save all database alteration
         await issue.save();
         await user.save();
-        await book.save();
+        await course.save();
         await activity.save();
 
-        res.redirect("/books/all/all/1");
+        res.redirect("/courses/all/all/1");
     } catch(err) {
         console.log(err);
         return res.redirect("back");
@@ -417,38 +474,38 @@ exports.getShowRenewReturn = async(req, res, next) => {
     }
 }
 
-// user -> renew book working procedure
+// user -> renew course working procedure
 /*
     1. construct the search object
     2. fetch issues based on search object
     3. increament return date by 7 days set isRenewed = true
     4. Log the activity
     5. save all db alteration
-    6. redirect to /books/return-renew
+    6. redirect to /courses/return-renew
 */
-exports.postRenewBook = async(req, res, next) => {
+exports.postRenewcourse = async(req, res, next) => {
     try {
         const searchObj = {
             "user_id.id": req.user._id,
-            "book_info.id": req.params.book_id,
+            "course_info.id": req.params.course_id,
         }
         const issue = await Issue.findOne(searchObj);
         // adding extra 7 days to that issue
-        let time = issue.book_info.returnDate.getTime();
-        issue.book_info.returnDate = time + 7*24*60*60*1000;
-        issue.book_info.isRenewed = true;
+        let time = issue.course_info.returnDate.getTime();
+        issue.course_info.returnDate = time + 7*24*60*60*1000;
+        issue.course_info.isRenewed = true;
 
         // logging the activity
         const activity = new Activity({
             info: {
                 id: issue._id,
-                title: issue.book_info.title,
+                title: issue.course_info.title,
             },
             category: "Renew",
             time: {
                 id: issue._id,
-                issueDate: issue.book_info.issueDate,
-                returnDate: issue.book_info.returnDate,
+                issueDate: issue.course_info.issueDate,
+                returnDate: issue.course_info.returnDate,
             },
             user_id: {
                 id: req.user._id,
@@ -459,7 +516,7 @@ exports.postRenewBook = async(req, res, next) => {
         await activity.save();
         await issue.save();
 
-        res.redirect("/books/return-renew");
+        res.redirect("/courses/return-renew");
     } catch (err) {
         console.log(err);
         return res.redirect("back");
@@ -467,45 +524,45 @@ exports.postRenewBook = async(req, res, next) => {
     }
 }
 
-// user -> return book working procedure
+// user -> return course working procedure
 /*
-    1. Find the position of the book to be returned from user.bookIssueInfo
-    2. Fetch the book from db and increament its stock by 1
+    1. Find the position of the course to be returned from user.courseIssueInfo
+    2. Fetch the course from db and increament its stock by 1
     3. Remove issue record from db
-    4. Pop bookIssueInfo from user by position
+    4. Pop courseIssueInfo from user by position
     5. Log the activity
-    6. refirect to /books/return-renew
+    6. refirect to /courses/return-renew
 */
-exports.postReturnBook = async(req, res, next) => {
+exports.postReturncourse = async(req, res, next) => {
     try {
         // finding the position
-        const book_id = req.params.book_id;
-        const pos = req.user.bookIssueInfo.indexOf(req.params.book_id);
+        const course_id = req.params.course_id;
+        const pos = req.user.courseIssueInfo.indexOf(req.params.course_id);
         
-        // fetching book from db and increament
-        const book = await Book.findById(book_id);
-        book.stock += 1;
-        await book.save();
+        // fetching course from db and increament
+        const course = await course.findById(course_id);
+        course.stock += 1;
+        await course.save();
 
         // removing issue 
         const issue =  await Issue.findOne({"user_id.id": req.user._id});
         await issue.remove();
 
-        // popping book issue info from user
-        req.user.bookIssueInfo.splice(pos, 1);
+        // popping course issue info from user
+        req.user.courseIssueInfo.splice(pos, 1);
         await req.user.save();
 
         // logging the activity
         const activity = new Activity({
             info: {
-                id: issue.book_info.id,
-                title: issue.book_info.title,
+                id: issue.course_info.id,
+                title: issue.course_info.title,
             },
             category: "Return",
             time: {
                 id: issue._id,
-                issueDate: issue.book_info.issueDate,
-                returnDate: issue.book_info.returnDate,
+                issueDate: issue.course_info.issueDate,
+                returnDate: issue.course_info.returnDate,
             },
             user_id: {
                 id: req.user._id,
@@ -515,7 +572,7 @@ exports.postReturnBook = async(req, res, next) => {
         await activity.save();
 
         // redirecting
-        res.redirect("/books/return-renew");
+        res.redirect("/courses/return-renew");
     } catch(err) {
         console.log(err);
         return res.redirect("back");
@@ -524,10 +581,10 @@ exports.postReturnBook = async(req, res, next) => {
 
 // user -> create new comment working procedure
 /* 
-    1. Find the book to be commented by id
+    1. Find the course to be commented by id
     2. Create new Comment instance and fill information inside it
     3. Log the activity
-    4. Redirect to /books/details/:book_id
+    4. Redirect to /courses/details/:course_id
 */
 exports.postNewComment = async(req, res, next) => {
     try {
@@ -535,9 +592,9 @@ exports.postNewComment = async(req, res, next) => {
         const user_id = req.user._id;
         const username = req.user.username;
 
-        // fetching the book to be commented by id
-        const book_id = req.params.book_id;
-        const book = await Book.findById(book_id);
+        // fetching the course to be commented by id
+        const course_id = req.params.course_id;
+        const course = await course.findById(course_id);
 
         // creating new comment instance
         const comment = new Comment({
@@ -546,22 +603,22 @@ exports.postNewComment = async(req, res, next) => {
                 id: user_id,
                 username: username,
             },
-            book: {
-                id: book._id,
-                title: book.title,
+            course: {
+                id: course._id,
+                title: course.title,
             }
         });
         await comment.save();
         
-        // pushing the comment id to book
-        book.comments.push(comment._id);
-        await book.save();
+        // pushing the comment id to course
+        course.comments.push(comment._id);
+        await course.save();
 
         // logging the activity
         const activity = new Activity({
             info: {
-                id: book._id,
-                title: book.title,
+                id: course._id,
+                title: course.title,
             },
             category: "Comment",
             user_id: {
@@ -571,7 +628,7 @@ exports.postNewComment = async(req, res, next) => {
         });
         await activity.save();
 
-        res.redirect("/books/details/"+book_id);
+        res.redirect("/courses/details/"+course_id);
     } catch (err) {
         console.log(err);
         return res.redirect("back");
@@ -582,14 +639,14 @@ exports.postNewComment = async(req, res, next) => {
 // user -> update existing comment working procedure
 /*
     1. Fetch the comment to be updated from db and update
-    2. Fetch the book to be commented for logging book id, title in activity
+    2. Fetch the course to be commented for logging course id, title in activity
     3. Log the activity
-    4. Redirect to /books/details/"+book_id
+    4. Redirect to /courses/details/"+course_id
 */
 exports.postUpdateComment = async(req, res, next) => {
     const comment_id = req.params.comment_id;
     const comment_text = req.body.comment;
-    const book_id = req.params.book_id;
+    const course_id = req.params.course_id;
     const username = req.user.username;
     const user_id = req.user._id;
 
@@ -597,14 +654,14 @@ exports.postUpdateComment = async(req, res, next) => {
         // fetching the comment by id
         await Comment.findByIdAndUpdate(comment_id, comment_text);
 
-        // fetching the book
-        const book = await Book.findById(book_id);
+        // fetching the course
+        const course = await course.findById(course_id);
 
         // logging the activity
         const activity = new Activity({
             info: {
-                id: book._id,
-                title: book.title,
+                id: course._id,
+                title: course.title,
              },
              category: "Update Comment",
              user_id: {
@@ -615,7 +672,7 @@ exports.postUpdateComment = async(req, res, next) => {
         await activity.save();
 
         // redirecting
-        res.redirect("/books/details/"+book_id);
+        res.redirect("/courses/details/"+course_id);
         
     } catch(err) {
         console.log(err);
@@ -626,26 +683,26 @@ exports.postUpdateComment = async(req, res, next) => {
 
 // user -> delete existing comment working procedure
 /* 
-    1. Fetch the book info for logging info
-    2. Find the position of comment id in book.comments array in Book model
-    3. Pop the comment id by position from Book
+    1. Fetch the course info for logging info
+    2. Find the position of comment id in course.comments array in course model
+    3. Pop the comment id by position from course
     4. Find the comment and remove it from Comment
     5. Log the activity
-    6. Redirect to /books/details/" + book_id
+    6. Redirect to /courses/details/" + course_id
 */
 exports.deleteComment = async(req, res, next) => {
-    const book_id = req.params.book_id;
+    const course_id = req.params.course_id;
     const comment_id = req.params.comment_id;
     const user_id = req.user._id;
     const username = req.user.username;
     try {
-        // fetching the book
-        const book = await Book.findById(book_id);
+        // fetching the course
+        const course = await course.findById(course_id);
 
         // finding the position and popping comment_id
-        const pos = book.comments.indexOf(comment_id);
-        book.comments.splice(pos, 1);
-        await book.save();
+        const pos = course.comments.indexOf(comment_id);
+        course.comments.splice(pos, 1);
+        await course.save();
 
         // removing comment from Comment
         await Comment.findByIdAndRemove(comment_id);
@@ -653,8 +710,8 @@ exports.deleteComment = async(req, res, next) => {
         // logging the activity
         const activity = new Activity({
             info: {
-                id: book._id,
-                title: book.title,
+                id: course._id,
+                title: course.title,
              },
             category: "Delete Comment",
             user_id: {
@@ -665,7 +722,7 @@ exports.deleteComment = async(req, res, next) => {
         await activity.save();
 
         // redirecting
-        res.redirect("/books/details/" + book_id);
+        res.redirect("/courses/details/" + course_id);
     } catch(err) {
         console.log(err);
         return res.redirect("back");
