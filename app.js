@@ -22,6 +22,7 @@ const express = require("express"),
   userRoutes = require("./routes/users"),
   //adminRoutes = require("./routes/admin"),
   courseRoutes = require("./routes/courses"),
+  classRoutes = require("./routes/classes"),
   authRoutes = require("./routes/auth");
  // mongoString = "mongodb+srv://ranjani:<anandita>@hostman.npiob.mongodb.net/<bookstore>?retryWrites=true&w=majority";
 // Seed = require('./seed');
@@ -179,7 +180,7 @@ app.use(userRoutes);
 //app.use(adminRoutes);
 app.use(courseRoutes);
 app.use(authRoutes);
-
+app.use(classRoutes);
 const PORT = process.env.PORT || 2500;
 
 module.exports = app.listen(PORT, () => {

@@ -1,0 +1,47 @@
+<% include ../partials/header %>
+
+<!--NAVIGATION BAR FOR ADMIN-->
+<% include ../partials/userNav %>
+
+<% include ../partials/alerts %>
+
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card">
+              <div class="card-header text-center">
+                <h4>Add Class</h4>
+              </div>
+                <div class="card-block">
+                  <form class="p-3" action="/user/1/classes/add/<%=currentUser._id%>" method="POST">
+                      
+                    <div class="form-group">
+                      <label class="form-control-label">Class name</label>
+                      <input type="text" name="class[name]" placeholder="Class Name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label class="form-control-label">Course Code</label>
+                      <select name="class[code]" id="auto" class="form-control">
+                        <option disabled selected value> -- select an option -- </option>
+                        <% courses.forEach(course => { %>
+        
+                          <option selected value="<%=course._id%>"><%=course.code%></option>
+    
+                      <% }); %>
+                      </select>
+                      
+                    
+                    </div>
+
+                    <button class="btn btn-warning btn-block">Submit</button>
+                    
+                    
+                  </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

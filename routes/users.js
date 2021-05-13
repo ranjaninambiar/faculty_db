@@ -29,12 +29,13 @@ router.put("/user/1/update-profile", middleware.isLoggedIn, userController.putUp
 router.get("/user/1/notification", middleware.isLoggedIn, userController.getNotification);
 
 router.get("/user/1/courses",middleware.isLoggedIn,userController.coursespage );
-
-
+router.get("/students/add/:student_id", middleware.isLoggedIn, userController.getstudform);
+router.post("/students/add/:student_id", middleware.isLoggedIn, userController.poststudform);
+router.post("/students/add/:class_id/enroll/:user_id", middleware.isLoggedIn, userController.postAddstudents);
 router.get("/user/1/courses/add", middleware.isLoggedIn, userController.getAddNewCourse);
+router.get("/user/1/classes/add/:user_id", middleware.isLoggedIn, userController.getAddNewClass);
+router.post("/user/1/classes/add/:user_id", middleware.isLoggedIn, userController.postAddNewClass);
 router.get("/user/1/courses/quizindex", middleware.isLoggedIn, userController.getQuizindex);
-
-router.post("/user/1/courses/add", middleware.isLoggedIn, userController.postAddNewCourse);
 
 router.get('/user/1/notes-new', middleware.isLoggedIn,userController.notespage );
 router.get('/user/1/notes-newnote', middleware.isLoggedIn,userController.newnotepage );
@@ -57,29 +58,8 @@ router.get("/user/1/course/delete/:course_id", middleware.isLoggedIn, userContro
 
 router.get("/courses/:course_id/issue/:user_id", middleware.isLoggedIn, userController.postIssueCourse);
 
-/*
-//user -> issue a book
-router.post("/books/:book_id/issue/:user_id", middleware.isLoggedIn, userController.postIssueBook);
 
-//user -> show return-renew page
-router.get("/books/return-renew", middleware.isLoggedIn, userController.getShowRenewReturn);
 
-//user -> renew book
-router.post("/books/:book_id/renew", middleware.isLoggedIn, middleware.isLoggedIn, userController.postRenewBook);
-
-// user -> return book
-
-router.post("/books/:book_id/return", middleware.isLoggedIn, userController.postReturnBook);
-
-//user -> create new comment
-router.post("/books/details/:book_id/comment", middleware.isLoggedIn, userController.postNewComment);
-
-//user -> update existing comment
-router.post("/books/details/:book_id/:comment_id", middleware.isLoggedIn, userController.postUpdateComment);
-
-//user -> delete existing comment
-router.delete("/books/details/:book_id/:comment_id", middleware.isLoggedIn, userController.deleteComment);
-*/
 // user -> delete user account
 router.delete("/user/1/delete-profile", middleware.isLoggedIn, userController.deleteUserAccount);
 

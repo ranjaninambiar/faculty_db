@@ -7,8 +7,11 @@ const User = require("../models/user"),
       Activity = require("../models/activity"),
       Note = require("../models/notes"),
       Course = require("../models/course"),
+      Class = require("../models/class"),
       //course = require("../models/course"),
+      Student = require("../models/student"),
       Issue = require("../models/courseissue");
+const { name } = require('faker');
       //Comment = require("../models/comment");
 
 // importing utilities
@@ -37,6 +40,114 @@ exports.getQuizindex = (req, res, next) => {
 }
 exports.getAddNewCourse= (req, res, next) => {
     res.render("user/addcourse");
+}
+exports.getAddNewClass= async(req, res, next) => {
+    const courses = await Course.find();
+  res.render('user/addclass', { courses:courses });
+}
+exports.getAddstudents= async(req, res, next) => {
+    const classes = await Class.find();
+    res.render("user/addstudent",{ classes:classes});
+}
+exports.postAddstudents= async(req, res, next) => {
+    const user = await User.findById(req.params.user_id);
+    const cl = await Class.findById(req.params.class_id);
+    //const stu = req.body.student;
+    const student =  new Student({
+        //name: stu.name,
+        //mentor: stu.mentor,
+        //batch: stu.batch,
+               
+        user_id: {
+            id: user._id,
+            faculty: user.username,
+        }
+    });
+    console.log(student.classInfo);
+    console.log(student);
+    student.classInfo.push(cl._id);
+    student.courseInfo.push(cl.course_info.id);
+    /*cl.studentInfo.push({
+        id: student._id,
+        name: student.name,
+        mentor: student.mentor,
+        batch: student.batch,
+
+    });*/
+    await cl.save();
+    await student.save();
+    res.redirect("/students/add/"+student._id);
+
+
+};
+exports.getstudform= async(req, res, next) => {
+    const stud = await Student.findById(req.params.student_id);
+    res.render("user/addstudent",{ id:stud });
+
+};
+exports.poststudform= async(req, res, next) => {
+    const stud = await Student.findById(req.params.student_id);
+    const st_info = req.body.student;
+    stud.name = st_info.name;
+    stud.mentor = st_info.mentor;
+    stud.batch = st_info.batch;
+    await stud.save();
+    res.redirect("/");
+
+};
+exports.postAddNewClass= async(req, res, next) => {
+    try {
+        const user = await User.findById(req.params.user_id);
+        const class_info = req.body.class;
+        console.log(class_info);
+        var name =  class_info.name;
+        var id =  class_info.code;
+        const course = await Course.findById(id);
+        //const user = await User.findById(currentUser._id);
+
+        // registering issue
+        const cl =  new Class({
+            name : name,
+            course_info: {
+                id: course._id,
+                name: course.name,
+                mentor: course.mentor,
+                type: course.type,
+                code: course.code,
+                domain: course.domain,
+                period: course.period,
+            },
+            user_id: {
+                id: user._id,
+                username: user.username,
+            }
+            
+        });
+
+        // putting issue record on individual user document
+
+        // logging the activity
+        const activity = new Activity({
+            info: {
+                id: cl._id,
+                name: course.name,
+            },
+            category: "Class",
+            user_id: {
+                id: user._id,
+                username: user.username,
+            }
+        });
+
+        // await ensure to synchronously save all database alteration
+        await cl.save();
+        await activity.save();
+
+        res.render("user/course");
+    } catch(err) {
+        console.log(err);
+        return res.redirect("back");
+    }
 }
 
 exports.postAddNewCourse = async(req, res, next) => {

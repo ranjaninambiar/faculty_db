@@ -1,0 +1,48 @@
+<% include partials/header %>
+<% include partials/userNav %>
+
+<!--NAVIGATION BAR-->
+
+
+<% include partials/alerts %>
+
+<!--classes-->
+<section id="browse_classes" class="mt-5">
+  <div class="container">
+    
+    <div class="row">
+    <% for(var i = 0; i < classes.length; i++) { %>
+    <div class="card col-md-3 text-center">
+          <div class="card-body">
+            <h5 class="card-title"> <%=classes[i].name%> </h5>
+            <p class="text-muted">
+              <small class="text-muted">Mentor : <%=classes[i].course_info.mentor%></small>
+            </p>
+            <p class="text-muted">
+              <small class="text-muted">Code : <%=classes[i].course_info.code%></small>
+            </p>
+            <p class="text-muted">
+              <small class="text-muted">Domain : <%=classes[i].course_info.domain%></small>
+            </p>
+            <form action="/students/add/<%=classes[i]._id%>/enroll/<%=currentUser._id%>" method="POST" class="d-inline">
+              <input class="btn btn-xs btn-success" type="submit" value="Add student">
+           </form>
+            
+            <form action="/classes/<%=classes[i]._id%>/issue/<%=currentUser._id%>" method="POST" class="d-inline">
+              <input class="btn btn-xs btn-success" type="submit" value="Assign work">
+           </form>
+           <form action="/classes/<%=classes[i]._id%>/issue/<%=currentUser._id%>" method="POST" class="d-inline">
+            <input class="btn btn-xs btn-success" type="submit" value="Mark Attendance">
+         </form>
+            <a href="/classes/details/<%=classes[i]._id%>" class="btn btn-xs btn-primary">Details</a>
+            
+            
+          </div>
+        </div>
+        <% } %>
+    </div>
+    
+  </div>
+</section>
+
+<% include partials/footer %>
