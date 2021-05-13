@@ -8,6 +8,7 @@ const User = require("../models/user"),
       Note = require("../models/notes"),
       Course = require("../models/course"),
       Class = require("../models/class"),
+      Attendance = require("../models/attendance"),
       //course = require("../models/course"),
       Student = require("../models/student"),
       Issue = require("../models/courseissue");
@@ -67,32 +68,99 @@ exports.postAddstudents= async(req, res, next) => {
     console.log(student);
     student.classInfo.push(cl._id);
     student.courseInfo.push(cl.course_info.id);
-    /*cl.studentInfo.push({
-        id: student._id,
-        name: student.name,
-        mentor: student.mentor,
-        batch: student.batch,
-
-    });*/
-    await cl.save();
+    
+   
     await student.save();
-    res.redirect("/students/add/"+student._id);
+    res.redirect("/students/add/"+student._id+"/"+cl._id);
 
 
 };
+
+exports.postattendance= async(req, res, next) =>{
+    const cl = await Class.findById(req.params.class_id);
+    const students = await Student.find();
+    res.render("user/attendance",{ id:cl, students:students ,classes:cl.studentInfo  });
+
+};
+
+
+exports.getpresent = async(req, res, next) =>{
+    const cl = await Class.findById(req.params.class_id);
+    const s = await Student.findById(req.params.student_id);
+    //const student = await Student.findById(req.params.student_id);
+    const att =  new Attendance({        
+        });
+        console.log(att.studentInfo);
+
+    console.log(s);
+    att.studentInfo.push({
+        id: s._id,
+        name:s.name,
+        mentor: s.mentor,
+        batch: s.batch,
+        status: "Present",
+        class: cl._id,
+    });
+    console.log(att.studentInfo);
+
+    await att.save();
+    res.redirect("/user/1");
+
+};
+
+exports.getabsent = async(req, res, next) =>{
+    const cl = await Class.findById(req.params.class_id);
+    const student = await Student.findById(req.params.student_id);
+    const att =  new Attendance({        
+        });
+        console.log(att.studentInfo);
+
+    
+    att.studentInfo.push({
+        id: student._id,
+        name:student.name,
+        mentor: student.mentor,
+        batch: student.batch,
+        status: "Absent",
+        class: cl._id,
+    });
+    console.log(att.studentInfo);
+
+    await att.save();
+    res.redirect("/user/1");
+
+};
+
+exports.getattendance = async(req, res, next) =>{
+    const cl = await Class.findById(req.params.class_id);
+    //const stu = await Student.findById(req.params.student_id);
+    const classes = await Class.findById(req.params.class_id);
+    res.render("user/attendance",{ id:cl , classes:classes.studentInfo });
+
+};
+
 exports.getstudform= async(req, res, next) => {
     const stud = await Student.findById(req.params.student_id);
-    res.render("user/addstudent",{ id:stud });
+    const cl = await Class.findById(req.params.class_id);
+    res.render("user/addstudent",{ id:stud, cid:cl });
 
 };
 exports.poststudform= async(req, res, next) => {
     const stud = await Student.findById(req.params.student_id);
+    const cl = await Class.findById(req.params.class_id);
     const st_info = req.body.student;
     stud.name = st_info.name;
     stud.mentor = st_info.mentor;
     stud.batch = st_info.batch;
+    cl.studentInfo.push({
+        id: stud._id,
+        name: stud.name,
+        mentor: stud.mentor,
+        batch: stud.batch,
+    });
+    await cl.save();
     await stud.save();
-    res.redirect("/");
+    res.redirect("/user/1");
 
 };
 exports.postAddNewClass= async(req, res, next) => {

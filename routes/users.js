@@ -29,13 +29,19 @@ router.put("/user/1/update-profile", middleware.isLoggedIn, userController.putUp
 router.get("/user/1/notification", middleware.isLoggedIn, userController.getNotification);
 
 router.get("/user/1/courses",middleware.isLoggedIn,userController.coursespage );
-router.get("/students/add/:student_id", middleware.isLoggedIn, userController.getstudform);
-router.post("/students/add/:student_id", middleware.isLoggedIn, userController.poststudform);
+router.get("/students/add/:student_id/:class_id", middleware.isLoggedIn, userController.getstudform);
+router.post("/students/add/:student_id/:class_id", middleware.isLoggedIn, userController.poststudform);
 router.post("/students/add/:class_id/enroll/:user_id", middleware.isLoggedIn, userController.postAddstudents);
 router.get("/user/1/courses/add", middleware.isLoggedIn, userController.getAddNewCourse);
 router.get("/user/1/classes/add/:user_id", middleware.isLoggedIn, userController.getAddNewClass);
 router.post("/user/1/classes/add/:user_id", middleware.isLoggedIn, userController.postAddNewClass);
 router.get("/user/1/courses/quizindex", middleware.isLoggedIn, userController.getQuizindex);
+//to post attendance index
+router.post("/students/attendance/:class_id", middleware.isLoggedIn, userController.postattendance);
+
+//to mark present and absent
+router.get("/students/present/:student_id/:class_id", middleware.isLoggedIn, userController.getpresent);
+router.get("/students/absent/:student_id/:class_id", middleware.isLoggedIn, userController.getabsent);
 
 router.get('/user/1/notes-new', middleware.isLoggedIn,userController.notespage );
 router.get('/user/1/notes-newnote', middleware.isLoggedIn,userController.newnotepage );

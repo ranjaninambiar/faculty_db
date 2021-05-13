@@ -25,15 +25,15 @@ const classSchema = new mongoose.Schema({
    },
    studentInfo: [
     {
-        student_info : {
+        
             id : {
                 type : mongoose.Schema.Types.ObjectId,
                 ref : 'Student', 
             },
-            name : {type: String},
-            mentor : {type: String},
-            batch: {type: String},       
-        },
+                
+        name : {type: String},
+        mentor : {type: String},
+        batch: {type: String},   
     },
   ], 
     
