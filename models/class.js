@@ -36,7 +36,9 @@ const classSchema = new mongoose.Schema({
         batch: {type: String},   
     },
   ], 
-    
+    assignments:[
+        
+    ]
 
 });
 

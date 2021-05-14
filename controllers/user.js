@@ -88,56 +88,98 @@ exports.getpresent = async(req, res, next) =>{
     const cl = await Class.findById(req.params.class_id);
     const s = await Student.findById(req.params.student_id);
     //const student = await Student.findById(req.params.student_id);
-    const att =  new Attendance({        
+    const isDuplicate = await Attendance.find({ class: cl });
+    try{
+        const at = await Attendance.findById(isDuplicate[0]._id);
+
+        if(isDuplicate.length > 0) {
+            console.log(isDuplicate);
+            isDuplicate[0].studentInfo.push({
+                id: s._id,
+                name:s.name,
+                mentor: s.mentor,
+                batch: s.batch,
+                status: "Present",
+            });
+            console.log(isDuplicate[0].studentInfo);
+            await at.update(
+                { studentInfo: isDuplicate[0].studentInfo }
+                );
+            await at.save();
+            return res.redirect('/user/1');
+        } }
+    catch(e){
+        const att =  new Attendance({    
+            class: cl._id,    
+            });
+            console.log(att.studentInfo);
+    
+        console.log(s);
+        att.studentInfo.push({
+            id: s._id,
+            name:s.name,
+            mentor: s.mentor,
+            batch: s.batch,
+            status: "Present",
         });
         console.log(att.studentInfo);
+    
+        await att.save();
+        res.redirect("/user/1");
 
-    console.log(s);
-    att.studentInfo.push({
-        id: s._id,
-        name:s.name,
-        mentor: s.mentor,
-        batch: s.batch,
-        status: "Present",
-        class: cl._id,
-    });
-    console.log(att.studentInfo);
-
-    await att.save();
-    res.redirect("/user/1");
+    }
+    
 
 };
 
 exports.getabsent = async(req, res, next) =>{
     const cl = await Class.findById(req.params.class_id);
-    const student = await Student.findById(req.params.student_id);
-    const att =  new Attendance({        
+    const s = await Student.findById(req.params.student_id);
+    //const student = await Student.findById(req.params.student_id);
+    const isDuplicate = await Attendance.find({ class: cl });
+    try{
+        const at = await Attendance.findById(isDuplicate[0]._id);
+
+        if(isDuplicate.length > 0) {
+            console.log(isDuplicate);
+            isDuplicate[0].studentInfo.push({
+                id: s._id,
+                name:s.name,
+                mentor: s.mentor,
+                batch: s.batch,
+                status: "Absent",
+            });
+            console.log(isDuplicate[0].studentInfo);
+            await at.update(
+                { studentInfo: isDuplicate[0].studentInfo }
+                );
+            await at.save();
+            return res.redirect("/classes/getall");
+        } }
+    catch(e){
+        const att =  new Attendance({    
+            class: cl._id,    
+            });
+            console.log(att.studentInfo);
+    
+        console.log(s);
+        att.studentInfo.push({
+            id: s._id,
+            name:s.name,
+            mentor: s.mentor,
+            batch: s.batch,
+            status: "Absent",
         });
         console.log(att.studentInfo);
-
     
-    att.studentInfo.push({
-        id: student._id,
-        name:student.name,
-        mentor: student.mentor,
-        batch: student.batch,
-        status: "Absent",
-        class: cl._id,
-    });
-    console.log(att.studentInfo);
+        await att.save();
+        res.redirect("/classes/getall");
 
-    await att.save();
-    res.redirect("/user/1");
+    }
+    
 
 };
 
-exports.getattendance = async(req, res, next) =>{
-    const cl = await Class.findById(req.params.class_id);
-    //const stu = await Student.findById(req.params.student_id);
-    const classes = await Class.findById(req.params.class_id);
-    res.render("user/attendance",{ id:cl , classes:classes.studentInfo });
-
-};
 
 exports.getstudform= async(req, res, next) => {
     const stud = await Student.findById(req.params.student_id);

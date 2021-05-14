@@ -3,9 +3,12 @@ const mongoose = require("mongoose");
 const attendanceSchema = new mongoose.Schema({
    
    atdate : {type : Date, default : Date.now()},
+   class: {
+    type : mongoose.Schema.Types.ObjectId,
+    ref : 'Class', 
+},  
    studentInfo: [
     {
-        
             id : {
                 type : mongoose.Schema.Types.ObjectId,
                 ref : 'Student', 
@@ -14,10 +17,7 @@ const attendanceSchema = new mongoose.Schema({
             mentor : {type: String},
             batch: {type: String},
             status : {type: String},  
-            class: {
-                type : mongoose.Schema.Types.ObjectId,
-                ref : 'Class', 
-            },   
+             
         },
 
   ], 
