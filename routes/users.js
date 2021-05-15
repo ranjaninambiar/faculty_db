@@ -25,6 +25,19 @@ router.put("/user/1/update-password", middleware.isLoggedIn, userController.putU
 //user -> update profile
 router.put("/user/1/update-profile", middleware.isLoggedIn, userController.putUpdateUserProfile);
 
+//user -> Projects
+router.get("/user/1/project/add", middleware.isLoggedIn, userController.getAddNewProject);
+router.post("/user/1/project/add", middleware.isLoggedIn, userController.postAddNewProject);
+
+router.get("/user/1/projectInventory/:filter/:value/:page", middleware.isLoggedIn, userController.getUserProjectInventory);
+router.post("/user/1/projectInventory/:filter/:value/:page",middleware.isLoggedIn, userController.postUserProjectInventory);
+
+router.get("/user/1/project/update/:project_id", middleware.isLoggedIn, userController.getUpdateProject);
+router.post("/user/1/project/update/:project_id", middleware.isLoggedIn,userController.postUpdateProject);
+router.get("/user/1/project/delete/:project_id", middleware.isLoggedIn, userController.getDeleteProject);
+
+
+
 //user -> notification
 router.get("/user/1/notification", middleware.isLoggedIn, userController.getNotification);
 
@@ -33,6 +46,7 @@ router.get("/students/add/:student_id/:class_id", middleware.isLoggedIn, userCon
 router.post("/students/add/:student_id/:class_id", middleware.isLoggedIn, userController.poststudform);
 router.post("/students/add/:class_id/enroll/:user_id", middleware.isLoggedIn, userController.postAddstudents);
 router.get("/user/1/courses/add", middleware.isLoggedIn, userController.getAddNewCourse);
+router.post("/user/1/courses/add", middleware.isLoggedIn, userController.postAddNewCourse);
 router.get("/user/1/classes/add/:user_id", middleware.isLoggedIn, userController.getAddNewClass);
 router.post("/user/1/classes/add/:user_id", middleware.isLoggedIn, userController.postAddNewClass);
 router.get("/user/1/courses/quizindex", middleware.isLoggedIn, userController.getQuizindex);
@@ -63,7 +77,6 @@ router.post("/user/1/course/update/:course_id", middleware.isLoggedIn,userContro
 router.get("/user/1/course/delete/:course_id", middleware.isLoggedIn, userController.getDeleteCourse);
 
 router.get("/courses/:course_id/issue/:user_id", middleware.isLoggedIn, userController.postIssueCourse);
-
 
 
 // user -> delete user account

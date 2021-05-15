@@ -11,21 +11,21 @@ exports.getProject = async(req, res, next) => {
  
     // constructing search object
     if(filter != 'all' && value != 'all') {
-       // fetch courses by search value and filter
+       // fetch project by search value and filter
        searchObj[filter] = value;
     }
 
     try {
-       // Fetch courses from database
+       // Fetch project from database
        const project = await Project
        .find(searchObj)
        .skip((PER_PAGE * page) - PER_PAGE)
        .limit(PER_PAGE);
 
-       // Get the count of total available course of given filter
+       // Get the count of total available project of given filter
        const count = await Project.find(searchObj).countDocuments();
  
-       res.render("projects", {
+       res.render("project", {
           project: project,
           current: page,
           pages: Math.ceil(count / PER_PAGE),
@@ -63,7 +63,7 @@ exports.findProject = async(req, res, next) => {
       // Get the count of total available book of given filter
       const count = await Project.find(searchObj).countDocuments();
 
-      res.render("courses", {
+      res.render("project", {
          project: project,
          current: page,
          pages: Math.ceil(count / PER_PAGE),
@@ -81,7 +81,7 @@ exports.getProjectDetails = async(req, res, next) => {
    try {
       const project_id = req.params.project_id;
       const project = await Project.findById(project_id);
-      res.render("user/courseDetails", {project: project});
+      res.render("user/projectDetails", {project: project});
    } catch (err) {
       console.log(err);
       return res.redirect("back");

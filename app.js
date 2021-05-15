@@ -27,8 +27,10 @@ const express = require("express"),
   userRoutes = require("./routes/users"),
   //adminRoutes = require("./routes/admin"),
   courseRoutes = require("./routes/courses"),
+  projectRoutes = require("./routes/project"),
   classRoutes = require("./routes/classes"),
   authRoutes = require("./routes/auth");
+
  // mongoString = "mongodb+srv://ranjani:<anandita>@hostman.npiob.mongodb.net/<bookstore>?retryWrites=true&w=majority";
 // Seed = require('./seed');
 
@@ -325,6 +327,7 @@ const activities = await Activity.find().sort('-entryTime');
 app.use(userRoutes);
 //app.use(adminRoutes);
 app.use(courseRoutes);
+app.use(projectRoutes);
 app.use(authRoutes);
 app.use(classRoutes);
 const PORT = process.env.PORT || 2500;

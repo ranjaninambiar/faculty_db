@@ -12,6 +12,6 @@ router.get("/project/:filter/:value/:page", projectController.getProject);
 router.post("/project/:filter/:value/:page", projectController.findProject);
 
 // Fetch individual book details
-router.get("/project/details/:course_id", projectController.getProjectetails);
+router.get("/project/details/:project_id", projectController.getProjectDetails);
 
 module.exports = router;

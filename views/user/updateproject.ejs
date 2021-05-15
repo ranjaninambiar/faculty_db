@@ -1,0 +1,45 @@
+<% include ../partials/header %>
+
+<!--NAVIGATION BAR FOR ADMIN-->
+<% include ../partials/userNav %>
+    
+<!--SHOW project EDIT FORM-->
+<div class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+       <form action="/user/1/project/update/<%=project._id%>" method="POST">
+          <div class="form-group">
+            <label for="name" class="form-control-label" style="color:white;">Edit Title</label>
+            <input name="project[name]" type="text" class="form-control" value="<%=project.name%>">
+          </div>
+
+          <div class="form-group">
+            <label for="mentor" class="form-control-label" style="color:white;">Edit mentor</label>
+            <input name="project[mentor]" type="text" class="form-control" value="<%=project.mentor%>">
+          </div>
+          
+          <div class="form-group">
+            <label for="domain" class="form-control-label" style="color:white;">Edit domain</label>
+            <input name="project[domain]" type="text" class="form-control" value="<%=project.domain%>">
+          </div>
+          <div class="form-group">
+            <label for="period" class="form-control-label" style="color:white;">Edit domain</label>
+            <input name="project[period]" type="number" class="form-control" value="<%=project.period%>">
+          </div>
+          <div class="form-group">
+            <label for="description" style="color:white;">Edit Description</label>
+            <textarea name="project[description]" cols="30" rows="10" class="form-control"><%=project.description%></textarea>
+          </div>
+          
+          <button class="btn btn-block btn-warning">Update</button>
+        </form>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+<script>
+  CKEDITOR.replace('project[description]');
+</script>
+<% include ../partials/footer %>

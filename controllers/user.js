@@ -7,11 +7,13 @@ const User = require("../models/user"),
       Activity = require("../models/activity"),
       Note = require("../models/notes"),
       Course = require("../models/course"),
+      Project = require("../models/project"),
       Class = require("../models/class"),
       Attendance = require("../models/attendance"),
       //course = require("../models/course"),
       Student = require("../models/student"),
       Issue = require("../models/courseissue");
+
 const { name } = require('faker');
       //Comment = require("../models/comment");
 
@@ -42,6 +44,11 @@ exports.getQuizindex = (req, res, next) => {
 exports.getAddNewCourse= (req, res, next) => {
     res.render("user/addcourse");
 }
+
+exports.getAddNewProject= (req, res, next) => {
+    res.render("user/addproject");
+}
+
 exports.getAddNewClass= async(req, res, next) => {
     const courses = await Course.find();
   res.render('user/addclass', { courses:courses });
@@ -184,7 +191,7 @@ exports.getabsent = async(req, res, next) =>{
 exports.getstudform= async(req, res, next) => {
     const stud = await Student.findById(req.params.student_id);
     const cl = await Class.findById(req.params.class_id);
-    res.render("user/addstudent",{ id:stud, cid:cl });
+    res.render("user/addstudent",{ id:stud, cid:cl }); 
 
 };
 exports.poststudform= async(req, res, next) => {
@@ -259,6 +266,158 @@ exports.postAddNewClass= async(req, res, next) => {
         return res.redirect("back");
     }
 }
+
+
+exports.postAddNewProject = async(req, res, next) => {
+    try {
+        const project_info = req.body.project;
+        //project_info.description = req.sanitize(project_info.description);
+        
+        const isDuplicate = await Project.find(project_info);
+
+        if(isDuplicate.length > 0) {
+            req.flash("error", "This project is already registered in inventory");
+            return res.redirect('back');
+        } 
+
+        const new_project = new Project(project_info);
+        await new_project.save();
+        req.flash("success", `A new project named ${new_project.title} is added to the inventory`);
+        console.log("project created")
+        res.redirect("/user/1/projectInventory/all/all/1");
+    } catch(err) {
+        console.log(err);
+        res.redirect('back');
+    }
+};
+
+exports.getUserProjectInventory = async(req, res, next) => {
+    try{
+        let page = req.params.page || 1;
+        const filter = req.params.filter;
+        const value = req.params.value;
+
+        // console.log(filter, value);
+        // // constructing search object
+        let searchObj = {};
+        if(filter !== 'all' && value !== 'all') {
+            // fetch projects by search value and filter
+            searchObj[filter] = value;
+         }
+
+        // get the project counts
+        const project_count = await Project.find(searchObj).countDocuments();
+
+        // fetching projects
+        const project = await Project
+            .find(searchObj)
+            .skip((PER_PAGE * page) - PER_PAGE)
+            .limit(PER_PAGE)
+        
+        // rendering admin/projectInventory
+        res.render("user/projectInventory", {
+            project : project,
+            current : page,
+            pages: Math.ceil(project_count / PER_PAGE),
+            filter : filter,
+            value : value,
+        });
+    } catch(err) {
+        // console.log(err.messge);
+        return res.redirect('back');
+    }
+}
+
+// admin -> return project inventory by search query working procedure
+/*
+    same as getAdminprojectInventory method
+*/
+exports.postUserProjectInventory = async(req, res, next) => {
+    try {
+        let page = req.params.page || 1;
+        const filter = req.body.filter.toLowerCase();
+        const value = req.body.searchName;
+
+        if(value == "") {
+            req.flash("error", "Search field is empty. Please fill the search field in order to get a result");
+            return res.redirect('back');
+        }
+        const searchObj = {};
+        searchObj[filter] = value;
+
+        // get the project count
+        const project_count = await Project.find(searchObj).countDocuments();
+
+        // fetch the project by search query
+        const project = await Project
+            .find(searchObj)
+            .skip((PER_PAGE * page) - PER_PAGE)
+            .limit(PER_PAGE);
+        
+        // rendering admin/projectInventory
+        res.render("user/projectInventory", {
+            project: project,
+            current: page,
+            pages: Math.ceil(project_count / PER_PAGE),
+            filter: filter,
+            value: value,
+        });
+
+    } catch(err) {
+        // console.log(err.message);
+        return res.redirect('back');
+    }
+}
+
+exports.getUpdateProject = async (req, res, next) => {
+
+    try {
+        const project_id = req.params.project_id;
+        const project = await Project.findById(project_id);
+
+        res.render('user/updateproject', {
+            project: project,
+        })
+    } catch(err) {
+        console.log(err);
+        return res.redirect('back');
+    }
+};
+
+// admin -> post update project
+exports.postUpdateProject = async(req, res, next) => {
+
+    try {
+        //const description = req.sanitize(req.body.project.description);
+        const project_info = req.body.project;
+        const project_id = req.params.project_id;
+
+        await Project.findByIdAndUpdate(project_id, project_info);
+
+        res.redirect("/user/1/projectInventory/all/all/1");
+    } catch (err) {
+        console.log(err);
+        res.redirect('back');
+    }
+};
+
+// admin -> delete project
+exports.getDeleteProject = async(req, res, next) => {
+    try {
+        const project_id = req.params.project_id;
+
+        const project = await Project.findById(project_id);
+        await project.remove();
+
+        req.flash("success", `A project named ${project.name} is just deleted!`);
+        res.redirect('back');
+
+    } catch(err) {
+        console.log(err);
+        res.redirect('back');
+    }
+};
+
 
 exports.postAddNewCourse = async(req, res, next) => {
     try {

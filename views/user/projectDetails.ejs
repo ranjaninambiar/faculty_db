@@ -1,0 +1,56 @@
+<% include ../partials/header %>
+
+<!--NAVIGATION BAR FOR USER-->
+<% include ../partials/userNav %>
+
+<!--project DETAILS-->
+
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="text-center"> <%= project.name %> </h4>
+                </div>
+                <small class="text-muted px-3 py-2">Mentor :  <%= project.mentor %> </small>
+                <small class="text-muted px-3 py-2">Category :  <%= project.domain %>  </small>
+                <small class="text-muted px-3 py-2">Period :  <%= project.period %>  </small>
+                <div class="card-body">
+                    <p class="card-text">
+                        <%- project.description %> 
+                    </p>
+                </div>
+            </div>
+            
+            <div class="card my-3 bg-light">
+                <% if(currentUser) { %>
+                <p class="p-3">
+                  <button class="btn btn-primary float-right" type="button" data-toggle="collapse" data-target="#collapseCommentBox" aria-expanded="false" aria-controls="collapseCommentBox">
+                    Leave a comment
+                  </button>
+                </p>
+                <div class="collapse" id="collapseCommentBox">
+                 <form action="/project/details/<%=project._id%>/comment" method="POST">
+                    <textarea name="comment" class="form-control"></textarea>
+                    <input type="submit" class="btn btn-outline-success btn-sm m-1 float-right">
+                 </form>
+                </div>
+
+            <% } %>
+                
+                
+           
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $('button').on('click',  function() {
+       $(this).prev().toggleClass('d-none'); 
+      $(this).next().next().toggleClass('d-none');
+    });
+</script>
+<% include ../partials/footer %>
