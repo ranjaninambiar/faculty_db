@@ -5,6 +5,9 @@
   line-height: .5;
   border-radius: .2rem;
 }
+.btn-block{
+  margin-bottom: 1rem;
+}
 
 .header-container{
   text-align: right;
@@ -196,7 +199,7 @@ h3{
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 25px;
-  color: #4d4d4d;
+  color:  #383838;
   display: block;
 }
 .fa-user-circle,.fa-bookmark,.fa-calendar,.fa-bullhorn,.fa-check-circle,.fa-paper-plane-o,.fa-folder {
@@ -329,6 +332,34 @@ border-radius: 24px;
 transition:0.25s;
 cursor : pointer;
 }
+.addup-btn{
+background:rgb(14, 163, 14);
+display:block;
+margin: 20px auto;
+text-align: center;
+border:2px solid rgb(14, 163, 14);
+padding:14px 20px;
+width:150px;
+outline:none;
+color:rgb(196, 196, 196);
+border-radius: 24px;
+transition:0.25s;
+cursor : pointer;
+}
+.addc-btn,.adddl-btn,.addt-btn{
+background:#a4123f;
+display:block;
+margin: 20px auto;
+text-align: center;
+border:2px solid #80082c;
+padding:14px 20px;
+width:150px;
+outline:none;
+color:rgb(196, 196, 196);
+border-radius: 24px;
+transition:0.25s;
+cursor : pointer;
+}
 .sort-button,.add-button{
 background:#a4123f;
 display:block;
@@ -344,15 +375,18 @@ transition:0.25s;
 cursor : pointer;
 
 }
-.sort-button:hover,.add-button:hover{
+.addup-btn:hover{
+  background:#096e1a;
+  color: white;
+}
+.sort-button:hover,.add-button:hover,.adddl-btn:hover{
   background:#80082c;
   color: white;
 }
 .login-card-header{
   padding: 2rem 0;
 }
-
-.login-button,.submit-button,.reset-button:hover{
+.login-button:hover,.submit-button:hover,.reset-button:hover,.addc-btn:hover,.addt-btn{
   background:#80082c;
   color: white;
 }
@@ -421,14 +455,29 @@ cursor : pointer;
   transition:0.25s;
   cursor: pointer;
 }
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+select.form-control:not([size]):not([multiple]) {
+  height: calc(3.25rem + 2px);
+}
+::-webkit-scrollbar {
+  width: 0;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
+}
 #todoTable table,tr,th
 {
-  color: white;
+  color: black;
 }
 #todoTable table,td
 {
   border: 1px solid black;
-  color: white;
+  color: black;
 }
 .forgotpw-container{
   text-align: center;
@@ -467,24 +516,6 @@ h2 {
   text-align:center;
 }
 
-.box {
-  padding:10px 15px;
-  border:2px solid #b1c9bb;
-  border-radius:5px;
-  background:#FFF;
-  margin:15px 0;
-}
-
-
-.todo-list {
-  float:left;
-  width:46%;
-}
-
-.complete-list {
-  float:right;
-  width:46%;
-}
 
 ul {
   list-style:none;

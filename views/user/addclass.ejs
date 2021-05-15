@@ -8,9 +8,10 @@
 <div class="container my-4">
     <div class="row justify-content-center">
         <div class="col-md-7">
-            <div class="card">
-              <div class="card-header text-center">
-                <h4>Add Class</h4>
+              <div class="card transparent-container">
+                <div class="card-header text-center login-card-header">
+                <h4 class="h3-login login-h4">Add Class</h4>
+                <hr class="hr-login">
               </div>
                 <div class="card-block">
                   <form class="p-3" action="/user/1/classes/add/<%=currentUser._id%>" method="POST">
@@ -34,7 +35,7 @@
                     
                     </div>
 
-                    <button class="btn btn-warning btn-block">Submit</button>
+                    <button class="addc-btn">Submit</button>
                     
                     
                   </form>

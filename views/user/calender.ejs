@@ -1,4 +1,8 @@
+<% include ../partials/header %>
 
+<!--NAVIGATION BAR FOR USER-->
+<% include ../partials/userNav %>
+<% include ../partials/alerts %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +16,11 @@
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.1.0/main.min.js"></script>
 </head>
 <body class="transparent-container" style="color: black;">
+  <div class="container my-4">
+  <div class="row justify-content-center">
+  <div class="col-md-7">
+  <div class="card transparent-container">
+    <div class="card-header text-center login-card-header">
   <div class="form-group">
   <input class="form-control" type="text" placeholder="Enter new to-do">
   </div>
@@ -25,6 +34,8 @@
   <button class="add-button" id="addBtn">Add</button>
   <p><button class="sort-button" id="sortBtn">Sort</button></p>
   <ul></ul>
+  </div>
+  </div>
   <table id="todoTable">
     <tr>
       <th>Date</th>
@@ -36,7 +47,8 @@
     </tr>
     
 </table>
-
+<div class="card transparent-container">
+  <div class="card-header text-center login-card-header">
   <div id='calendar'></div>
   <script>
       todoMain();
@@ -335,6 +347,12 @@ function todoMain() {
   
 }
   </script>
+  </div>
+</div>
+</div>
+</div>
+</div>
 </body>
 </html>
+<% include ../partials/alerts %>
 

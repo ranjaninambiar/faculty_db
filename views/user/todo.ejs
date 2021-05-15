@@ -3,29 +3,48 @@
 <!--NAVIGATION BAR FOR USER-->
 <% include ../partials/userNav %>
 <% include ../partials/alerts %>
+<header id="main-header" class="py-2 bg-light text-black">
+  <h1>TO-DO</h1>
+</header>
 
 <section class="container">
   
-  <h1>To-Do App</h1>
   
-  <div class="new-task-container box">
   
-  <label for="new-task">Add New Task</label>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card transparent-container">
+          <div class="card-header text-center login-card-header">
+  <label  for="new-task">Add New Task</label>
   <input type="text" id="new-task">
-    <button id="addTask">Add Task</button>
-  
+    <button class="addt-btn"id="addTask">Add Task</button>
   </div>
-  
-  <div class="todo-list box">
-  
+  </div>
+  </div>
+  </div>
+  </div>  
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card transparent-container">
+            <div class="card-header text-center login-card-header">
+              <div class="todo-list box">
     <h2>Incomplete Tasks</h2>
     <ul>
       <li><input type="checkbox"><label>Sample task</lable></li>
       
     </ul>
-  
+  </div>
+</div>
+</div>
+</div>
+</div>
   </div><!--/todo-list-->
-  
+  <div class="container mt-3">
+      <div class="col-md-6">
+        <div class="card transparent-container">
+          <div class="card-header text-center login-card-header">
   <div class="complete-list box">
     
     <h2>Completed Tasks</h2>
@@ -33,7 +52,10 @@
       <li>Task Name <button class="delete">Delete</button></li>
 
     </ul>
-    
+  </div>
+</div>
+</div>
+</div>  
     
   </div><!--/complete-list-->
   
@@ -165,3 +187,4 @@ for(var i=0; i < completeUl.children.length; i++) {
 addTaskBtn.addEventListener("click", addTask);
 
 </script>
+<% include ../partials/footer %>
