@@ -148,8 +148,11 @@ transporter.sendMail(mailOptions, function(error, info){
   
   }
 });
-return res.render("user/resetpass");
+
+alert("Leave application sent")
+//return res.render("user/resetpass");
 };
+
 exports.postUserSignUp = async (req, res, next) => {
   try {
     const newUser = new User({

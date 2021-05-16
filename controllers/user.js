@@ -31,6 +31,55 @@ exports.getUserDashboard = async(req, res, next) => {
 }
 
 // user -> profile
+
+exports.getApplyLeave = (req, res, next) => {
+    res.render("user/applyleave")
+}
+
+exports.postApplyLeave = async (req, res, next) => {
+    console.log("inside postAppleLeave");
+
+    let nodemailer = require('nodemailer');
+      const transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 587,
+      ignoreTLS: false,
+      secure: false,
+      auth: {
+        user: 'ranjuparker@gmail.com',
+        pass: 'gnqtqfejgzsguwdr'
+      }
+      });
+      module.exports = transporter;
+    
+  
+  var mailOptions = {
+    from: 'ranjuparker@gmail.com',
+    to: 'psvishal23@gmail.com',
+    subject: `Leave application from ${req.body.name}`,
+    text:
+    `Leave Application:
+    Name: ${req.body.name}
+    Roll Number: ${req.body.roll}
+    Type of Leave: ${req.body.type}
+    Applying to: ${req.body.applyingto}
+    Leave Required From: ${req.body.leavefrom}
+    Leave Required Until: ${req.body.leaveuntil}
+    Description: ${req.body.description}`
+  };
+  
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    
+    }
+  });
+
+  return res.render("user/leavesent");
+};
+
 exports.getUserProfile = (req, res, next) => {
     res.render("user/profile");
 }

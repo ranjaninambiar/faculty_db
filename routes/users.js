@@ -36,6 +36,9 @@ router.get("/user/1/project/update/:project_id", middleware.isLoggedIn, userCont
 router.post("/user/1/project/update/:project_id", middleware.isLoggedIn,userController.postUpdateProject);
 router.get("/user/1/project/delete/:project_id", middleware.isLoggedIn, userController.getDeleteProject);
 
+//user -> leave
+router.get("/user/1/leave/apply", middleware.isLoggedIn, userController.getApplyLeave);
+router.post("/user/1/leave/apply", middleware.isLoggedIn, userController.postApplyLeave);
 
 
 //user -> notification
