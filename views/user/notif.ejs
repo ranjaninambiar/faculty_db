@@ -8,19 +8,13 @@
 </script>
 
 <!--DASHBOARD SECTION-->
-<header id="main-header" class="py-2 bg-warning text-white ">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <h1><i class="fa fa-gear"></i> Dashboard</h1>
-      </div>
-    </div>
-  </div>
+<<header id="main-header" class="py-2 bg-light text-black">
+  <h1><i class="fa fa-gear"></i>DASHBOARD</h1>
 </header>
 
 <% include ../partials/alerts %>
 <!-- ACTIONS -->
-<section id="actions" class="py-4 mb-4 bg-light">
+<section id="actions" class="py-4 mb-4">
   <div class="container">
     <div class="row">
       <div class="col-md-4">
@@ -38,7 +32,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-          <div class="card">
+          <div class="card transparent-container">
             <img src="../public/image/profile/profile.png" class="card-img-top p-1" alt="...">
             <div class="card-body">
               <p>Name : <%=currentUser.firstName%>.firstName%> <%=currentUser.lastName%></p>
@@ -49,7 +43,7 @@
         </div>
         <div class="col-md-9">
           
-          <div class="card">
+          <div class="card transparent-container">
             <div class="card-header text-center">
               <h4>Recent Activities</h4>
             </div>

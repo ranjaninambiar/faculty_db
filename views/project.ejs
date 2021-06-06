@@ -1,13 +1,17 @@
 <%- include('partials/header') %>
 
 <!--NAVIGATION BAR-->
-
+<header id="main-header" class="py-2 bg-light text-black ">
+  <h1>Browse Project</h1>
+</header>
 <!--SEARCH BAR-->
-<section id="search_bar" class="my-3 py-4 bg-light">
-  <div class="container">
-   <form action="/project/all/all/1" method="POST">
+<section id="search_bar">
+  <div class="container mt-5">
     <div class="row">
-        <div class="col-md-5 p-1">
+      <div class="col-md-6 offset-md-3">
+        <div class="card transparent-container">
+          <div class="card-header text-center login-card-header">
+   <form action="/project/all/all/1" method="POST">
           <select name="filter" class="form-control">
             <option selected disabled>Select Option...</option>
             <option  name="name">Title</option>
@@ -16,12 +20,12 @@
           </select>
         </div>
         
-         <div class="col-md-5 p-1">
+         <div class="form-group">
           <input name="searchName"  type="text" class="form-control" placeholder="Search Project">
         </div>
         
-         <div class="col-md-2 p-1">
-          <input type="submit" class="btn btn-outline-warning btn-block" value="Search">
+         <div class="form-group">
+          <input type="submit" class="addc-btn" value="Search">
         </div>
       </div>
     </form>
@@ -32,11 +36,10 @@
 
 <!--PROJECT-->
 <section id="browse_project" class="mt-5">
-  <div class="container">
-    
+  <div class="card container transparent-container">
     <div class="row">
     <% for(var i = 0; i < project.length; i++) { %>
-    <div class="card col-md-3 text-center">
+    <div class="card transparent-container col-md-3 text-center">
           <div class="card-body">
             <h5 class="card-title"> <%=project[i].name%> </h5>
             <p class="text-muted">
@@ -45,7 +48,7 @@
             <p class="text-muted">
               <small class="text-muted">Domain : <%=project[i].domain%></small>
             </p>
-            <a href="/project/details/<%=project[i]._id%>" class="btn btn-xs btn-primary">Details</a>
+            <a href="/project/details/<%=project[i]._id%>" class="addc-btn">Details</a>
             
             
           </div>

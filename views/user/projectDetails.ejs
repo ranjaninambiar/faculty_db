@@ -8,9 +8,10 @@
 <div class="container mt-3">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <div class="card">
+            <div class="card transparent-container">
                 <div class="card-header">
                     <h4 class="text-center"> <%= project.name %> </h4>
+                    <hr class="hr-login">
                 </div>
                 <small class="text-muted px-3 py-2">Mentor :  <%= project.mentor %> </small>
                 <small class="text-muted px-3 py-2">Category :  <%= project.domain %>  </small>
@@ -22,17 +23,17 @@
                 </div>
             </div>
             
-            <div class="card my-3 bg-light">
+            <div class="card my-3 transparent-container">
                 <% if(currentUser) { %>
                 <p class="p-3">
-                  <button class="btn btn-primary float-right" type="button" data-toggle="collapse" data-target="#collapseCommentBox" aria-expanded="false" aria-controls="collapseCommentBox">
+                  <button class="lac" type="button" data-toggle="collapse" data-target="#collapseCommentBox" aria-expanded="false" aria-controls="collapseCommentBox">
                     Leave a comment
                   </button>
                 </p>
                 <div class="collapse" id="collapseCommentBox">
                  <form action="/project/details/<%=project._id%>/comment" method="POST">
                     <textarea name="comment" class="form-control"></textarea>
-                    <input type="submit" class="btn btn-outline-success btn-sm m-1 float-right">
+                    <input type="submit" class="addc-btn">
                  </form>
                 </div>
 
