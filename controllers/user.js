@@ -37,7 +37,6 @@ exports.getApplyLeave = (req, res, next) => {
 }
 
 exports.postApplyLeave = async (req, res, next) => {
-    console.log("inside postAppleLeave");
 
     let nodemailer = require('nodemailer');
       const transporter = nodemailer.createTransport({

@@ -211,3 +211,47 @@ transporter.sendMail(mailOptions, function(error, info){
 };
 
 
+exports.getAdminSupport = (req, res, next) => {
+  res.render("user/adminSupport")
+}
+
+exports.postAdminSupport = async (req, res, next) => {
+  console.log("inside postAppleLeave");
+
+  let nodemailer = require('nodemailer');
+    const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    ignoreTLS: false,
+    secure: false,
+    auth: {
+      user: 'ranjuparker@gmail.com',
+      pass: 'gnqtqfejgzsguwdr'
+    }
+    });
+    module.exports = transporter;
+  
+
+var mailOptions = {
+  from: 'ranjuparker@gmail.com',
+  to: 'psvishal23@gmail.com',
+  subject: `Leave application from ${req.body.name}`,
+  text:
+  `Leave Application:
+  Name: ${req.body.name}
+  Roll Number: ${req.body.roll}
+  Title of Query: ${req.body.title}
+  Query Description: ${req.body.description}`
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  
+  }
+});
+
+return res.render("user/querysent");
+};

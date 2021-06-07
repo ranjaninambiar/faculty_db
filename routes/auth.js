@@ -64,7 +64,9 @@ router.get("/auth/user-gsignUp", authController.getgUserSignUp);
 
 
 
-
 router.post("/auth/user-signup", authController.postUserSignUp);
+
+router.get("/auth/admin-support", authController.getAdminSupport)
+router.post("/auth/admin-support", authController.postAdminSupport)
 
 module.exports = router;
