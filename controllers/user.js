@@ -107,7 +107,7 @@ exports.postReimbursement = async (req, res, next) => {
   var mailOptions = {
     from: 'ranjuparker@gmail.com',
     to: 'psvishal23@gmail.com',
-    subject: `Leave application from ${req.body.name}`,
+    subject: `Reimbursement Request from ${req.body.name}`,
     text:
     `Leave Application:
     Name: ${req.body.name}
