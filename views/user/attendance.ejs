@@ -8,7 +8,7 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <div class="card">
+        <div class="card transparent-container">
           <table class="table table-striped">
             <thead class="thead-inverse">
               <tr>
@@ -33,8 +33,8 @@
                 <td>
                     <span>
                         <% console.log(student.id); %>
-                        <a href="/students/present/<%=student.id%>/<%=id._id%>" class="btn btn-info btn-primary">Present</a>
-                        <a href="/students/absent/<%=student.id%>/<%=id._id%>" class="btn btn-sm btn-danger">Absent</a>
+                        <a href="/students/present/<%=student.id%>/<%=id._id%>" class="addup-btn">Present</a>
+                        <a href="/students/absent/<%=student.id%>/<%=id._id%>" class="adddl-btn">Absent</a>
                     </span>
                 </td>
               </tr>
