@@ -1,0 +1,50 @@
+<% include ../partials/header %>
+
+<!--NAVIGATION BAR FOR USER-->
+<% include ../partials/userNav %>
+<% include ../partials/alerts %>
+
+<!--DASHBOARD SECTION-->
+<header id="main-header" class="py-2 bg-light text-black ">
+    <h1>Salary Details</h1>
+  </header>
+
+
+
+  
+<% include ../partials/alerts %>
+
+<!--SALARY-->
+<section class="mt-4">
+    <div class="container transparent-container2">
+        <div class="row d-flex justify-content-center ">
+            <div class="col-md-6 center">
+                <h4 class="text-center pb-3 profile-heading">Your Personal Information</h4>
+                
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item profile-list-item1" >Name :   <%=currentUser.firstName%> <%=currentUser.lastName%></li>
+                  <li class="list-group-item profile-list-item1">Email :  <%=currentUser.email%> </li>
+                  <li class="list-group-item profile-list-item1">Account UPI : <%=currentUser.firstName%>@okicici  </li>
+                  <li class="list-group-item profile-list-item1">Account :  328*****93 </li>
+                  <li class="list-group-item profile-list-item1">Salary :  140000 </li>
+                  <li class="list-group-item profile-list-item1">PF :  7000 </li>
+                  <li class="list-group-item profile-list-item1">Special Allowances : 20000  </li>
+                </ul>
+            </div>
+            
+            <!-- <div class="col-md-3">
+                <h4 class="text-center pb-3" style="color:white;">Terms & Conditions</h4>
+                <ul style="color:white;">
+                    <li>1. Copyrights owned by Admindek(C5)</li>
+                    <li>2. Any queries mail to ranjuparker@gmail.com</li>
+                    
+                </ul>
+            </div> -->
+        </div>
+    </div>
+</section>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<% include ../partials/footer %>
