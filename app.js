@@ -113,7 +113,7 @@ const storage = new GridFsStorage({
     });
   }
 });
-const upload = multer({ storage });
+const upload = multer({ storage });//NOSONAR
 
 
 // upload route get
@@ -241,7 +241,7 @@ const fileStorage = multer.diskStorage({
     cb(null, "images");
   },
   
-});
+});//NOSONAR
 
 const filefilter = (req, file, cb) => {
   if (
@@ -257,7 +257,7 @@ const filefilter = (req, file, cb) => {
 
 app.use(
   multer({ storage: fileStorage, fileFilter: filefilter }).single("image")
-);
+);//NOSONAR
 app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.use((req, res, next) => {

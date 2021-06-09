@@ -222,7 +222,7 @@ function todoMain() {
       for (let i = 0; i < todoList.length; i++) {
         if (todoList[i].id == this.dataset.id)
           todoList[i]["done"] = this.checked;
-      }
+      }//NOSONAR
       save();
     }
   }
@@ -233,7 +233,7 @@ function todoMain() {
       d += performance.now(); //use high-precision timer if available
     }
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-      var r = (d + Math.random() * 16) % 16 | 0;
+      var r = (d + Math.random() * 16) % 16 | 0;//NOSONAR
       d = Math.floor(d / 16);
       return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
     });
@@ -259,7 +259,7 @@ function todoMain() {
   function draw(data){
     var calendarEl = document.getElementById('calendar');
 
-    calendar = new FullCalendar.Calendar(calendarEl, {
+    var calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'dayGridMonth',
       headerToolbar: {
         left: 'prev,next today',

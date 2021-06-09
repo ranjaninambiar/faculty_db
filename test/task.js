@@ -123,8 +123,6 @@ describe('Guest Lecture', () => {
     });
 });
 
-
-//ToDo
 describe('Guest Lecture', () => {
 
 
