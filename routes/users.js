@@ -40,6 +40,12 @@ router.get("/user/1/project/delete/:project_id", middleware.isLoggedIn, userCont
 router.get("/user/1/leave/apply", middleware.isLoggedIn, userController.getApplyLeave);
 router.post("/user/1/leave/apply", middleware.isLoggedIn, userController.postApplyLeave);
 
+//user -> salary
+router.get("/user/1/salary", middleware.isLoggedIn, userController.getSalary);
+
+//user -> reimbursement
+router.get("/user/1/reimbursement", middleware.isLoggedIn, userController.getReimbursement);
+router.post("/user/1/reimbursement", middleware.isLoggedIn, userController.postReimbursement);
 
 //user -> notification
 router.get("/user/1/notification", middleware.isLoggedIn, userController.getNotification);

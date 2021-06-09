@@ -79,6 +79,57 @@ exports.postApplyLeave = async (req, res, next) => {
   return res.render("user/leavesent");
 };
 
+
+exports.getSalary = (req, res, next) => {
+    res.render("user/salary")
+}
+
+exports.getReimbursement = (req, res, next) => {
+    res.render("user/reimbursement")
+}
+
+exports.postReimbursement = async (req, res, next) => {
+
+    let nodemailer = require('nodemailer');
+      const transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 587,
+      ignoreTLS: false,
+      secure: false,
+      auth: {
+        user: 'ranjuparker@gmail.com',
+        pass: 'gnqtqfejgzsguwdr'
+      }
+      });
+      module.exports = transporter;
+    
+  
+  var mailOptions = {
+    from: 'ranjuparker@gmail.com',
+    to: 'psvishal23@gmail.com',
+    subject: `Reimbursement Request from ${req.body.name}`,
+    text:
+    `Leave Application:
+    Name: ${req.body.name}
+    Roll Number: ${req.body.roll}
+    Type of Reimbursement: ${req.body.type}
+    Amount: ${req.body.amount}
+    Bill image: ${req.body.bill}
+    Description: ${req.body.description}`
+  };
+  
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    
+    }
+  });
+
+  return res.render("user/reimbursementsent");
+};
+
 exports.getUserProfile = (req, res, next) => {
     res.render("user/profile");
 }
