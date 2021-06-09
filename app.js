@@ -31,8 +31,7 @@ const express = require("express"),
   classRoutes = require("./routes/classes"),
   authRoutes = require("./routes/auth");
 
- // mongoString = "mongodb+srv://ranjani:<anandita>@hostman.npiob.mongodb.net/<bookstore>?retryWrites=true&w=majority";
-// Seed = require('./seed');
+ 
 
 // uncomment below line for first time to seed database;
 //Seed(1000);
@@ -92,7 +91,7 @@ conn.once('open', () => {
   // Init stream
   gfs = Grid(conn.db, mongoose.mongo);
   gfs.collection('uploads');
-  //console.log(gfs);
+
 });
 
 // Create storage engine
@@ -140,7 +139,7 @@ app.get('/upload/:class_id/:user_id', (req, res) => {
 });
 
 app.post('/upload/:class_id/:user_id', upload.single('class[file]'), async(req, res) => {
-   //res.json({ file: req.file });
+
   const cl = await Class.findById(req.params.class_id);
   const user = await User.findById(req.params.user_id);
   const as_info = req.body.class;
@@ -159,7 +158,7 @@ app.post('/upload/:class_id/:user_id', upload.single('class[file]'), async(req, 
 // @route GET /files
 // @desc  Display all files in JSON
 app.get('/files', (req, res) => {
-  //console.log(window.gfs);
+  
   gfs.files.find().toArray((err, files) => {
     // Check if files
     if (!files || files.length === 0) {
@@ -325,7 +324,7 @@ const activities = await Activity.find().sort('-entryTime');
 
 //Routes
 app.use(userRoutes);
-//app.use(adminRoutes);
+
 app.use(courseRoutes);
 app.use(projectRoutes);
 app.use(authRoutes);

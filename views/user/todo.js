@@ -124,7 +124,7 @@ function todoMain() {
   function load() {
     let retrieved = localStorage.getItem("todoList");
     todoList = JSON.parse(retrieved);
-    //console.log(typeof todoList)
+    
     if (todoList == null)
       todoList = [];
   }
@@ -133,9 +133,6 @@ function todoMain() {
     todoList.forEach(todoObj => {
 
 
-      // let todoEntry = todoObj["todo"];
-      // let key = "category";
-      // let todoCategory = todoObj[key];
       rendowRow(todoObj);
     })
 

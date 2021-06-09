@@ -34,9 +34,9 @@ describe('Guest Lecture', () => {
         it('Should Render User Login Page', (done) => {
             chai.request(server)
                 .get('/auth/user-login')
-                .end((err, res) => {
+                .end((error, res) => {
 
-                    if(err){console.log('error')}
+                    if(error){console.log('error')}
                     expect(res).to.have.status(200);
                     expect(res).to.have.header('content-type', 'text/html; charset=utf-8');
                     done();

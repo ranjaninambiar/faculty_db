@@ -140,17 +140,17 @@ var mailOptions = {
   text: 'Your password reset request from Admindek!'
 };
 
-transporter.sendMail(mailOptions, function(error, info){
-  if (error) {
-    console.log(error);
+transporter.sendMail(mailOptions, function(err, info){
+  if (err) {
+    console.log(err);
   } else {
-    console.log('Email sent: ' + info.response);
+    console.log('Email sent : ' + info.response);
   
   }
 });
 
 alert("Leave application sent")
-//return res.render("user/resetpass");
+
 };
 
 exports.postUserSignUp = async (req, res, next) => {

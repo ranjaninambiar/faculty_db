@@ -10,15 +10,14 @@ const User = require("../models/user"),
       Project = require("../models/project"),
       Class = require("../models/class"),
       Attendance = require("../models/attendance"),
-      //course = require("../models/course"),
+      
       Student = require("../models/student"),
       Issue = require("../models/courseissue");
 
 const { name } = require('faker');
-      //Comment = require("../models/comment");
+      
 
 // importing utilities
-//const deleteImage = require('../utils/delete_image');
 
 // GLOBAL_VARIABLES
 const PER_PAGE = 5;
@@ -67,9 +66,9 @@ exports.postApplyLeave = async (req, res, next) => {
     Description: ${req.body.description}`
   };
   
-  transporter.sendMail(mailOptions, function(error, info){
-    if (error) {
-      console.log(error);
+  transporter.sendMail(mailOptions, function(err, info){
+    if (err) {
+      console.log(err);
     } else {
       console.log('Email sent: ' + info.response);
     
@@ -159,11 +158,9 @@ exports.getAddstudents= async(req, res, next) => {
 exports.postAddstudents= async(req, res, next) => {
     const user = await User.findById(req.params.user_id);
     const cl = await Class.findById(req.params.class_id);
-    //const stu = req.body.student;
+    
     const student =  new Student({
-        //name: stu.name,
-        //mentor: stu.mentor,
-        //batch: stu.batch,
+        
                
         user_id: {
             id: user._id,
@@ -193,7 +190,7 @@ exports.postattendance= async(req, res, next) =>{
 exports.getpresent = async(req, res, next) =>{
     const cl = await Class.findById(req.params.class_id);
     const s = await Student.findById(req.params.student_id);
-    //const student = await Student.findById(req.params.student_id);
+    
     const isDuplicate = await Attendance.find({ class: cl });
     try{
         const at = await Attendance.findById(isDuplicate[0]._id);
@@ -241,7 +238,7 @@ exports.getpresent = async(req, res, next) =>{
 exports.getabsent = async(req, res, next) =>{
     const cl = await Class.findById(req.params.class_id);
     const s = await Student.findById(req.params.student_id);
-    //const student = await Student.findById(req.params.student_id);
+    
     const isDuplicate = await Attendance.find({ class: cl });
     try{
         const at = await Attendance.findById(isDuplicate[0]._id);
@@ -319,9 +316,9 @@ exports.postAddNewClass= async(req, res, next) => {
         var name =  class_info.name;
         var id =  class_info.code;
         const course = await Course.findById(id);
-        //const user = await User.findById(currentUser._id);
+        
 
-        // registering issue
+        
         const cl =  new Class({
             name : name,
             course_info: {
@@ -355,7 +352,7 @@ exports.postAddNewClass= async(req, res, next) => {
             }
         });
 
-        // await ensure to synchronously save all database alteration
+        
         await cl.save();
         await activity.save();
 
@@ -370,7 +367,7 @@ exports.postAddNewClass= async(req, res, next) => {
 exports.postAddNewProject = async(req, res, next) => {
     try {
         const project_info = req.body.project;
-        //project_info.description = req.sanitize(project_info.description);
+        
         
         const isDuplicate = await Project.find(project_info);
 
@@ -396,7 +393,7 @@ exports.getUserProjectInventory = async(req, res, next) => {
         const filter = req.params.filter;
         const value = req.params.value;
 
-        // console.log(filter, value);
+
         // // constructing search object
         let searchObj = {};
         if(filter !== 'all' && value !== 'all') {
@@ -422,7 +419,7 @@ exports.getUserProjectInventory = async(req, res, next) => {
             value : value,
         });
     } catch(err) {
-        // console.log(err.messge);
+        
         return res.redirect('back');
     }
 }
@@ -463,7 +460,7 @@ exports.postUserProjectInventory = async(req, res, next) => {
         });
 
     } catch(err) {
-        // console.log(err.message);
+        
         return res.redirect('back');
     }
 }
@@ -487,7 +484,7 @@ exports.getUpdateProject = async (req, res, next) => {
 exports.postUpdateProject = async(req, res, next) => {
 
     try {
-        //const description = req.sanitize(req.body.project.description);
+        
         const project_info = req.body.project;
         const project_id = req.params.project_id;
 
@@ -521,7 +518,7 @@ exports.getDeleteProject = async(req, res, next) => {
 exports.postAddNewCourse = async(req, res, next) => {
     try {
         const course_info = req.body.course;
-        //course_info.description = req.sanitize(course_info.description);
+        
         
         const isDuplicate = await Course.find(course_info);
 
@@ -599,7 +596,6 @@ exports.getUserCourseInventory = async(req, res, next) => {
         const filter = req.params.filter;
         const value = req.params.value;
 
-        // console.log(filter, value);
         // // constructing search object
         let searchObj = {};
         if(filter !== 'all' && value !== 'all') {
@@ -625,7 +621,7 @@ exports.getUserCourseInventory = async(req, res, next) => {
             value : value,
         });
     } catch(err) {
-        // console.log(err.messge);
+        
         return res.redirect('back');
     }
 }
@@ -666,7 +662,7 @@ exports.postUserCourseInventory = async(req, res, next) => {
         });
 
     } catch(err) {
-        // console.log(err.message);
+        
         return res.redirect('back');
     }
 }
@@ -690,7 +686,7 @@ exports.getUpdateCourse = async (req, res, next) => {
 exports.postUpdateCourse = async(req, res, next) => {
 
     try {
-        //const description = req.sanitize(req.body.course.description);
+       
         const course_info = req.body.course;
         const course_id = req.params.course_id;
 
@@ -874,73 +870,7 @@ exports.coursespage = async(req, res, next) => {
     res.render("user/course");
 }
 //user -> issue a course
-/*
-exports.postIssuecourse = async(req, res, next) => {
-    if(req.user.violationFlag) {
-        req.flash("error", "You are flagged for violating rules/delay on returning courses/paying fines. Untill the flag is lifted, You can't issue any courses");
-        return res.redirect("back");
-    }
 
-    if(req.user.courseIssueInfo.length >= 5) {
-        req.flash("warning", "You can't issue more than 5 courses at a time");
-        return res.redirect("back");
-    }
-
-    try {
-        const course = await course.findById(req.params.course_id);
-        const user = await User.findById(req.params.user_id);
-
-        // registering issue
-        course.stock -= 1;
-        const issue =  new Issue({
-            course_info: {
-                id: course._id,
-                title: course.title,
-                author: course.author,
-                ISBN: course.ISBN,
-                category: course.category,
-                stock: course.stock,
-            },
-            user_id: {
-                id: user._id,
-                username: user.username,
-            }
-        });
-
-        // putting issue record on individual user document
-        user.courseIssueInfo.push(course._id);
-
-        // logging the activity
-        const activity = new Activity({
-            info: {
-                id: course._id,
-                title: course.title,
-            },
-            category: "Issue",
-            time: {
-                id: issue._id,
-                issueDate: issue.course_info.issueDate,
-                returnDate: issue.course_info.returnDate,
-            },
-            user_id: {
-                id: user._id,
-                username: user.username,
-            }
-        });
-
-        // await ensure to synchronously save all database alteration
-        await issue.save();
-        await user.save();
-        await course.save();
-        await activity.save();
-
-        res.redirect("/courses/all/all/1");
-    } catch(err) {
-        console.log(err);
-        return res.redirect("back");
-    }
-}
-*/
 // user -> show return-renew page
 exports.getShowRenewReturn = async(req, res, next) => {
     const user_id = req.user._id;
