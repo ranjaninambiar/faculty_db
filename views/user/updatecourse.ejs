@@ -4,49 +4,55 @@
 <% include ../partials/userNav %>
     
 <!--SHOW course EDIT FORM-->
-<div class="container my-4">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card transparent-container">
+        <div class="card-header text-center login-card-header">
+          <h4 class="h3-login login-h4">Update Courses</h4>
+          <hr class="hr-login">
        <form action="/user/1/course/update/<%=course._id%>" method="POST">
           <div class="form-group">
-            <label for="name" class="form-control-label" style="color:white;">Edit Title</label>
+            <label for="name" class="form-control-label">Edit Title</label>
             <input name="course[name]" type="text" class="form-control" value="<%=course.name%>">
           </div>
           
            <div class="form-group">
-            <label for="type" class="form-control-label" style="color:white;">Edit Type</label>
+            <label for="type" class="form-control-label">Edit Type</label>
             <input name="course[type]" type="text" class="form-control" value="<%=course.type%>">
           </div>
 
           <div class="form-group">
-            <label for="code" class="form-control-label" style="color:white;">Code</label>
+            <label for="code" class="form-control-label">Code</label>
             <input name="course[code]" type="text" class="form-control" readonly value="<%=course.code%>">
           </div>
 
           <div class="form-group">
-            <label for="mentor" class="form-control-label" style="color:white;">Edit mentor</label>
+            <label for="mentor" class="form-control-label">Edit mentor</label>
             <input name="course[mentor]" type="text" class="form-control" value="<%=course.mentor%>">
           </div>
           
           <div class="form-group">
-            <label for="domain" class="form-control-label" style="color:white;">Edit domain</label>
+            <label for="domain" class="form-control-label">Edit domain</label>
             <input name="course[domain]" type="text" class="form-control" value="<%=course.domain%>">
           </div>
           <div class="form-group">
-            <label for="period" class="form-control-label" style="color:white;">Edit domain</label>
+            <label for="period" class="form-control-label">Edit domain</label>
             <input name="course[period]" type="number" class="form-control" value="<%=course.period%>">
           </div>
           <div class="form-group">
-            <label for="description" style="color:white;">Edit Description</label>
+            <label for="description">Edit Description</label>
             <textarea name="course[description]" cols="30" rows="10" class="form-control"><%=course.description%></textarea>
           </div>
           
-          <button class="btn btn-block btn-warning">Update</button>
+          <button class="addc-btn">Update</button>
         </form>
     </div>
   </div>
 </div>
-
+</div>
+</div>
+</div>
 
 <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
 <script>
