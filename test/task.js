@@ -20,7 +20,7 @@ describe('Guest Lecture', () => {
                     expect(res).to.have.status(200);
                     expect(res).to.have.header('content-type', 'text/html; charset=utf-8');
                     done();
-                });
+                });//NOSONAR
         });
     });
 });

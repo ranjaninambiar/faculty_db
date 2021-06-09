@@ -107,7 +107,7 @@ function todoMain() {
     selectElem.appendChild(newOptionElem);
 
     for (let option of optionsSet) {
-      let newOptionElem = document.createElement('option');
+      let newOptionElem = document.createElement('option');//NOSONAR
       newOptionElem.value = option;
       newOptionElem.innerText = option;
       selectElem.appendChild(newOptionElem);
@@ -131,8 +131,6 @@ function todoMain() {
 
   function renderRows() {
     todoList.forEach(todoObj => {
-
-
       rendowRow(todoObj);
     })
 
