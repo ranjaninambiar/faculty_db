@@ -206,8 +206,8 @@ exports.getpresent = async(req, res, next) =>{
             });
             console.log(isDuplicate[0].studentInfo);
             await at.update(
-                { studentInfo: isDuplicate[0].studentInfo }
-                );//NOSONAR
+                { studentInfo: isDuplicate[0].studentInfo }//NOSONAR
+                );
             await at.save();//NOSONAR
             return res.redirect('/user/1');
         } }
@@ -254,8 +254,8 @@ exports.getabsent = async(req, res, next) =>{
             });
             console.log(isDuplicate[0].studentInfo);
             await at.update(
-                { studentInfo: isDuplicate[0].studentInfo }
-                );//NOSONAR
+                { studentInfo: isDuplicate[0].studentInfo }//NOSONAR
+                );
             await at.save();//NOSONAR
             return res.redirect("/classes/getall");
         } }
@@ -408,7 +408,7 @@ exports.getUserProjectInventory = async(req, res, next) => {
         const project = await Project
             .find(searchObj)
             .skip((PER_PAGE * page) - PER_PAGE)
-            .limit(PER_PAGE)
+            .limit(PER_PAGE);//NOSONAR
         
         // rendering admin/projectInventory
         res.render("user/projectInventory", {
@@ -448,7 +448,7 @@ exports.postUserProjectInventory = async(req, res, next) => {
         const project = await Project
             .find(searchObj)
             .skip((PER_PAGE * page) - PER_PAGE)
-            .limit(PER_PAGE);
+            .limit(PER_PAGE);//NOSONAR
         
         // rendering admin/projectInventory
         res.render("user/projectInventory", {
@@ -734,7 +734,7 @@ exports.postnotes = async(req, res, next) => {
     let note = await new Note({
         title: req.body.title,
         description: req.body.description,
-      });
+      });//NOSONAR
       try {
         note = await note.save();//NOSONAR
         res.redirect('/user/1/notes-new');

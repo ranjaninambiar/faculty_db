@@ -238,10 +238,10 @@ passport.deserializeUser(User.deserializeUser());
 // configure image file storage
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "images");
+    cb(null, "images");//NOSONAR
   },
   
-});//NOSONAR
+});
 
 const filefilter = (req, file, cb) => {
   if (
@@ -256,8 +256,8 @@ const filefilter = (req, file, cb) => {
 };
 
 app.use(
-  multer({ storage: fileStorage, fileFilter: filefilter }).single("image")
-);//NOSONAR
+  multer({ storage: fileStorage, fileFilter: filefilter }).single("image")//NOSONAR
+);
 app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.use((req, res, next) => {

@@ -107,7 +107,7 @@ function todoMain() {
     selectElem.appendChild(newOptionElem);
 
     for (let option of optionsSet) {
-      let newOptionElem = document.createElement('option');
+      let newOptionElem = document.createElement('option');//NOSONAR
       newOptionElem.value = option;
       newOptionElem.innerText = option;
       selectElem.appendChild(newOptionElem);
@@ -124,7 +124,7 @@ function todoMain() {
   function load() {
     let retrieved = localStorage.getItem("todoList");
     todoList = JSON.parse(retrieved);
-    //console.log(typeof todoList)
+    
     if (todoList == null)
       todoList = [];
   }
@@ -133,9 +133,7 @@ function todoMain() {
     todoList.forEach(todoObj => {
 
 
-      // let todoEntry = todoObj["todo"];
-      // let key = "category";
-      // let todoCategory = todoObj[key];
+     
       rendowRow(todoObj);
     })
 
@@ -238,7 +236,7 @@ function todoMain() {
       d += performance.now(); //use high-precision timer if available
     }
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-      var r = (d + Math.random() * 16) % 16 | 0;
+      var r = (d + Math.random() * 16) % 16 | 0;//NOSONAR
       d = Math.floor(d / 16);
       return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
     });

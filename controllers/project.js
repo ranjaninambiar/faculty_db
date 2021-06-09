@@ -20,7 +20,7 @@ exports.getProject = async(req, res, next) => {
        const project = await Project
        .find(searchObj)
        .skip((PER_PAGE * page) - PER_PAGE)
-       .limit(PER_PAGE);
+       .limit(PER_PAGE);//NOSONAR
 
        // Get the count of total available project of given filter
        const count = await Project.find(searchObj).countDocuments();//NOSONAR
@@ -58,7 +58,7 @@ exports.findProject = async(req, res, next) => {
       const project = await Project
       .find(searchObj)
       .skip((PER_PAGE * page) - PER_PAGE)
-      .limit(PER_PAGE)
+      .limit(PER_PAGE);//NOSONAR
 
       // Get the count of total available book of given filter
       const count = await Project.find(searchObj).countDocuments();//NOSONAR

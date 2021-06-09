@@ -20,7 +20,7 @@ exports.getCourses = async(req, res, next) => {
        const courses = await Course
        .find(searchObj)
        .skip((PER_PAGE * page) - PER_PAGE)
-       .limit(PER_PAGE);
+       .limit(PER_PAGE);//NOSONAR
 
        // Get the count of total available course of given filter
        const count = await Course.find(searchObj).countDocuments();//NOSONAR
@@ -58,7 +58,7 @@ exports.findCourses = async(req, res, next) => {
       const courses = await Course
       .find(searchObj)
       .skip((PER_PAGE * page) - PER_PAGE)
-      .limit(PER_PAGE)
+      .limit(PER_PAGE);//NOSONAR
 
       // Get the count of total available book of given filter
       const count = await Course.find(searchObj).countDocuments();//NOSONAR
