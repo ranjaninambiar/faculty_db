@@ -32,16 +32,12 @@
            <a href="/upload/<%=classes[i]._id%>/<%=currentUser._id%>" class="btn btn-xs btn-primary">Assign work</a>
            <form action="/students/attendance/<%=classes[i]._id%>" method="POST" class="d-inline">
             <input class="btn btn-xs btn-success" type="submit" value="Mark Attendance">
-         </form>
-            <a href="/classes/details/<%=classes[i]._id%>" class="btn btn-xs btn-primary">Details</a>
-            
-            
+         </form> 
           </div>
         </div>
         <% } %>
-    </div>
-    
+    </div> 
   </div>
+  
 </section>
-
 <% include partials/footer %>
