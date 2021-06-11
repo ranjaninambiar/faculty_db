@@ -20,10 +20,10 @@ exports.getProject = async(req, res, next) => {
        const project = await Project
        .find(searchObj)
        .skip((PER_PAGE * page) - PER_PAGE)
-       .limit(PER_PAGE);
+       .limit(PER_PAGE);//NOSONAR
 
        // Get the count of total available project of given filter
-       const count = await Project.find(searchObj).countDocuments();
+       const count = await Project.find(searchObj).countDocuments();//NOSONAR
  
        res.render("project", {
           project: project,
@@ -58,10 +58,10 @@ exports.findProject = async(req, res, next) => {
       const project = await Project
       .find(searchObj)
       .skip((PER_PAGE * page) - PER_PAGE)
-      .limit(PER_PAGE)
+      .limit(PER_PAGE);//NOSONAR
 
       // Get the count of total available book of given filter
-      const count = await Project.find(searchObj).countDocuments();
+      const count = await Project.find(searchObj).countDocuments();//NOSONAR
 
       res.render("project", {
          project: project,
@@ -80,7 +80,7 @@ exports.findProject = async(req, res, next) => {
 exports.getProjectDetails = async(req, res, next) => {
    try {
       const project_id = req.params.project_id;
-      const project = await Project.findById(project_id);
+      const project = await Project.findById(project_id);//NOSONAR
       res.render("user/projectDetails", {project: project});
    } catch (err) {
       console.log(err);

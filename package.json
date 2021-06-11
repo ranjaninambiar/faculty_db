@@ -12,7 +12,8 @@
     "expressjs"
   ],
   "scripts": {
-    "test": "mocha --timeout 15000",
+    "test-init": "node ./node_modules/jasmine/bin/jasmine.js init",
+    "test": "node ./node_modules/jasmine/bin/jasmine.js",
     "start": "node app.js",
     "dev": "SET NODE_ENV=dev && nodemon app.js"
   },
@@ -27,12 +28,13 @@
     "body-parser": "^1.18.3",
     "chai": "^4.3.4",
     "chai-http": "^4.3.0",
+    "cheerio": "^1.0.0-rc.10",
     "connect-flash": "^0.1.1",
     "connect-mongodb-session": "^2.4.1",
     "crypto": "^1.0.1",
     "dotenv": "^8.2.0",
     "ejs": "^2.7.4",
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "express-session": "^1.17.1",
     "fullcalendar": "^5.6.0",
     "gridfs-stream": "^1.1.1",
@@ -46,6 +48,7 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^5.0.1",
+    "request": "^2.88.2",
     "sharp": "^0.27.2",
     "uid": "^1.0.0",
     "uuid": "^3.4.0",
@@ -53,6 +56,7 @@
   },
   "devDependencies": {
     "faker": "^4.1.0",
+    "jasmine": "^3.7.0",
     "nodemon": "^1.19.4"
   },
   "repository": {

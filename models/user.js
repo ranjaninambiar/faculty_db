@@ -1,8 +1,8 @@
 const mongoose = require("mongoose"),
   passportLocalMongoose = require("passport-local-mongoose");
 
-MAX_LOGIN_ATTEMPTS = 2,
-LOCK_TIME = 2 * 60 * 60 * 1000;
+var MAX_LOGIN_ATTEMPTS = 2;
+var LOCK_TIME = 2 * 60 * 60 * 1000;
 
 const userSchema = new mongoose.Schema({
   firstName: {

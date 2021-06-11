@@ -1,0 +1,8 @@
+{
+    "baseURL":"http://localhost:2500", 
+    "test1":"/upload/609d693af4bc0842483779f7/60689db3d0e80797a4b68d67", 
+    "test2":"/courses/609a69e06/issue/60689db3d0e80797",
+    "test3":"/files/myself",
+    "test4":"/files/6b03f2da91ba9a017e7f1245769e352a.docx",
+    "test5":"/image/bbf5e7ea0e95db128f24db4323e69d73.pdf"
+}

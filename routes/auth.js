@@ -13,26 +13,7 @@ const User = require("../models/user");
 router.get('/', authController.getLandingPage);
 
 //admin login handler
-/*
-router.get("/auth/admin-login", authController.getAdminLoginPage)
 
-router.post("/auth/admin-login", passport.authenticate("local", {
-        successRedirect : "/admin",
-        failureRedirect : "/auth/admin-login",
-    }), (req, res)=> {
-});
-*/
-//admin logout handler
-/*
-router.get("/auth/admin-logout", authController.getAdminLogout);
-*/
-
-// admin sign up handler
-/*
-router.get("/auth/admin-signup", authController.getAdminSignUp);
-
-router.post("/auth/admin-signup", authController.postAdminSignUp);
-*/
 //user login handler
 router.get("/auth/user-login", authController.getUserLoginPage);
 

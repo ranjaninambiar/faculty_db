@@ -14,7 +14,7 @@ describe('Guest Lecture', () => {
         it('Should Render Landings Page', (done) => {
             chai.request(server)
                 .get('/')
-                .end((err, res) => {
+                .end((err, res) => {//NOSONAR
 
                     if(err){console.log('error')}
                     expect(res).to.have.status(200);
@@ -34,9 +34,9 @@ describe('Guest Lecture', () => {
         it('Should Render User Login Page', (done) => {
             chai.request(server)
                 .get('/auth/user-login')
-                .end((err, res) => {
+                .end((error, res) => {
 
-                    if(err){console.log('error')}
+                    if(error){console.log('error')}
                     expect(res).to.have.status(200);
                     expect(res).to.have.header('content-type', 'text/html; charset=utf-8');
                     done();
@@ -123,8 +123,6 @@ describe('Guest Lecture', () => {
     });
 });
 
-
-//ToDo
 describe('Guest Lecture', () => {
 
 
