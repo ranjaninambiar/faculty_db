@@ -76,16 +76,6 @@ describe('Faculty Dashboard', () => {
         })
     });
 
-    it('Files Page 5', (done) => {
-        let options = {
-            url: `${test_config.baseURL}${test_config.test3}`   
-        };
-        Request.get(options,(err,res)=>{
-            expect(res.statusCode).toBe(404)
-            done();
-        })
-    });
-
     it('Image Page', (done) => {
         let options = {
             url: `${test_config.baseURL}/image/bbf5e7ea0e95db128f24db4323e69d73.pdf`   
