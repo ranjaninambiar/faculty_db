@@ -44,16 +44,16 @@ exports.postApplyLeave = async (req, res, next) => {
       ignoreTLS: false,
       secure: false,
       auth: {
-        user: 'ranjuparker@gmail.com',
-        pass: 'gnqtqfejgzsguwdr'
+        user: 'facultydashboardc5@gmail.com',
+        pass: 'ziozbmlbcshseocf'
       }
       });
       module.exports = transporter;
     
   
   var mailOptions = {
-    from: 'ranjuparker@gmail.com',
-    to: 'psvishal23@gmail.com',
+    from: 'facultydashboardc5@gmail.com',
+    to: 'ranjanibabu25@gmail.com',
     subject: `Leave application from ${req.body.name}`,
     text:
     `Leave Application:
@@ -96,16 +96,16 @@ exports.postReimbursement = async (req, res, next) => {
       ignoreTLS: false,
       secure: false,
       auth: {
-        user: 'ranjuparker@gmail.com',
-        pass: 'gnqtqfejgzsguwdr'
+        user: 'facultydashboardc5@gmail.com',
+        pass: 'ziozbmlbcshseocf'
       }
       });
       module.exports = transporter;
     
   
   var mailOptions = {
-    from: 'ranjuparker@gmail.com',
-    to: 'psvishal23@gmail.com',
+    from: 'facultydashboardc5@gmail.com',
+    to: 'ranjanibabu25@gmail.com',
     subject: `Reimbursement Request from ${req.body.name}`,
     text:
     `Leave Application:

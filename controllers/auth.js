@@ -126,15 +126,15 @@ exports.postUserforgotpass = async (req, res, next) => {
     ignoreTLS: false,
     secure: false,
     auth: {
-      user: 'ranjuparker@gmail.com',
-      pass: 'gnqtqfejgzsguwdr'
+      user: 'facultydashboardc5@gmail.com',
+      pass: 'ziozbmlbcshseocf'
     }
     });
     module.exports = transporter;
   
 
 var mailOptions = {
-  from: 'ranjuparker@gmail.com',
+  from: 'facultydashboardc5@gmail.com',
   to: req.body.email,
   subject: 'Forgot password in Admindek',
   text: 'Your password reset request from Admindek!'
@@ -177,8 +177,8 @@ exports.postUserSignUp = async (req, res, next) => {
     ignoreTLS: false,
     secure: false,
     auth: {
-      user: 'ranjuparker@gmail.com',
-      pass: 'gnqtqfejgzsguwdr'
+      user: 'facultydashboardc5@gmail.com',
+      pass: 'ziozbmlbcshseocf'
     }
     });
     module.exports = transporter;
@@ -189,7 +189,7 @@ exports.postUserSignUp = async (req, res, next) => {
     
 
 var mailOptions = {
-  from: 'ranjuparker@gmail.com',
+  from: 'facultydashboardc5@gmail.com',
   to: req.body.email,
   subject: 'Sending Email using Node.js',
   text: 'Welcome to Admindek!'
@@ -225,16 +225,16 @@ exports.postAdminSupport = async (req, res, next) => {
     ignoreTLS: false,
     secure: false,
     auth: {
-      user: 'ranjuparker@gmail.com',
-      pass: 'gnqtqfejgzsguwdr'
+      user: 'facultydashboardc5@gmail.com',
+      pass: 'ziozbmlbcshseocf'
     }
     });
     module.exports = transporter;
   
 
 var mailOptions = {
-  from: 'ranjuparker@gmail.com',
-  to: 'psvishal23@gmail.com',
+  from: 'facultydashboardc5@gmail.com',
+  to: 'ranjanibabu25@gmail.com',
   subject: `Admin Support Request from ${req.body.name}`,
   text:
   `Leave Application:
