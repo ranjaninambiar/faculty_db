@@ -1,0 +1,4 @@
+# faculty_db
+This web application aims to develop a Dashboard to cater to the needs of faculty at the University. This application mainly focuses to customize the user experience in the Dashboard Management System. 
+It provides a one-point place for faculty with all CRUD services. It aids its users to post notes, schedule meetings, organize events using calendars and get all relevant news within the department. Depending on the areas of interests within the faculty's domain of work, newsletter subscriptions and notifications are customized. This application is designed for the CSE department and is scalable for any of the departments within the University. 
+The application also allows faculties to see their performance analysis in terms of work and provide valuable insights to scale up personally and professionally.
